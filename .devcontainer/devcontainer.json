@@ -1,0 +1,60 @@
+{
+    "initializeCommand": "./.devcontainer/set-project-root.sh",
+    "name": "${localWorkspaceFolderBasename}",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "remoteUser": "vscode",
+    "remoteEnv": {
+        "ACTIVE_PROJECT": "${localWorkspaceFolderBasename}",
+        "PROJECT_ROOT": "${localWorkspaceFolder}",
+        "LOCAL_WORKSPACE_FOLDER": "/workspaces/${localWorkspaceFolderBasename}",
+        "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
+        "ANTHROPIC_API_KEY": "${localEnv:OPENAI_API_KEY}",
+        "GEMINI_API_KEY": "${localEnv:GEMINI_API_KEY}"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
+        },
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers-extra/features/pre-commit:2": {},
+        "ghcr.io/jungaretti/features/vim:1": {},
+        "ghcr.io/kreemer/features/stow:1": {},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+        "ghcr.io/devcontainers/features/aws-cli:1": {},
+        "ghcr.io/devcontainers-extra/features/aws-cdk:2": {}
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.profiles.linux": { "zsh": { "path": "/bin/zsh", "args": ["-l", "-i"] } },
+                "terminal.integrated.defaultProfile.osx": "zsh",
+                "terminal.integrated.profiles.osx": { "zsh": { "path": "/bin/zsh", "args": ["-l", "-i"] } }
+            },
+            "extensions": [
+            ]
+        }
+    },
+    "mounts": [
+        "type=volume,source=python_venv_${localWorkspaceFolderBasename},target=/workspaces/${localWorkspaceFolderBasename}/.venv",
+        "type=volume,source=mypy_cache_${localWorkspaceFolderBasename},target=/workspaces/${localWorkspaceFolderBasename}/.mypy_cache",
+        "type=volume,source=pytest_cache_${localWorkspaceFolderBasename},target=/workspaces/${localWorkspaceFolderBasename}/.pytest_cache",
+        "type=volume,source=dist_${localWorkspaceFolderBasename},target=/workspaces/${localWorkspaceFolderBasename}/dist",
+        // local folders for bind mounts into the container
+        "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.zsh_history,target=/home/vscode/.zsh_history,type=bind",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.oh-my-zsh/themes,target=/home/vscode/.oh-my-zsh/themes,type=bind",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/bat,target=/home/vscode/.config/bat,type=bind"
+    ],
+    "forwardPorts": [],
+    "postCreateCommand": "sudo chown -R vscode:vscode /workspaces/${localWorkspaceFolderBasename}/.venv /workspaces/${localWorkspaceFolderBasename}/.mypy_cache /workspaces/${localWorkspaceFolderBasename}/.pytest_cache /workspaces/${localWorkspaceFolderBasename}/dist && bash .devcontainer/post-create.sh"
+
+}

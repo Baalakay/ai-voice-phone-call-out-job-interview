@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "dependencies": {
+    "aws-cdk": "^2.1024.0",
+    "sst": "3.17.10"
+  },
+  "devDependencies": {
+    "@pulumi/aws": "^7.5.0",
+    "@types/aws-lambda": "8.10.152"
+  }
+}

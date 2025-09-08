@@ -1,0 +1,56 @@
+# Development and Testing Dependencies
+# Install with: pip install -r requirements-dev.txt
+
+# Code Quality Tools
+black==25.1.0
+flake8==7.3.0
+mypy==1.17.0
+pycodestyle==2.14.0
+pyflakes==3.4.0
+mccabe==0.7.0
+
+# Testing Framework
+pytest==8.4.1
+pluggy==1.6.0
+iniconfig==2.1.0
+
+# CloudFormation Linting
+cfn-lint==1.36.1
+
+# Development Utilities
+cookiecutter==2.6.0
+watchdog==4.0.2
+rich==14.0.0
+
+# Type Checking and Validation
+mypy-boto3-apigateway==1.38.36
+mypy-boto3-cloudformation==1.38.31
+mypy-boto3-ecr==1.38.37
+mypy-boto3-iam==1.38.14
+mypy-boto3-kinesis==1.38.8
+mypy-boto3-lambda==1.38.40
+mypy-boto3-s3==1.38.44
+mypy-boto3-schemas==1.38.0
+mypy-boto3-secretsmanager==1.38.0
+mypy-boto3-signer==1.38.0
+mypy-boto3-sqs==1.38.0
+mypy-boto3-stepfunctions==1.38.0
+mypy-boto3-sts==1.38.38
+mypy-boto3-xray==1.38.0
+mypy_extensions==1.1.0
+typeguard==2.13.3
+types-awscrt==0.27.4
+types-python-dateutil==2.9.0.20250708
+types-s3transfer==0.13.0
+typing-inspection==0.4.1
+typing_extensions==4.14.1
+
+# Documentation and Markup
+markdown-it-py==3.0.0
+mdurl==0.1.2
+Pygments==2.19.2
+
+# Utilities
+python-slugify==8.0.4
+text-unidecode==1.3
+tomlkit==0.13.3
