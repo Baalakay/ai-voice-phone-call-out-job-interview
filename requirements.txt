@@ -3,6 +3,9 @@
 
 # AWS SDK and Lambda utilities
 boto3>=1.40.6
+
+# Twilio SDK for voice calling and TwiML
+twilio>=8.0.0
 botocore>=1.40.6
 aws_lambda_powertools==3.18.0
 aws-xray-sdk==2.14.0

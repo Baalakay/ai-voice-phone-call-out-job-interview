@@ -21,6 +21,10 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
       QUEUE_URL: infrastructure.processingQueue.url,
       OUTPUT_BUCKET: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
       PROJECT_NAME: projectConfig.projectName,
+      
+      // Twilio configuration for AI Skills Assessment
+      TWILIO_AUTH_TOKEN: stage === "production" ? process.env.TWILIO_AUTH_TOKEN_PROD || "" : process.env.TWILIO_AUTH_TOKEN_DEV || "",
+      TWILIO_WEBHOOK_URL: stage === "dev" ? "https://placeholder-dev.execute-api.us-east-1.amazonaws.com" : "https://placeholder-prod.execute-api.us-east-1.amazonaws.com",
     },
     permissions: [
       {
@@ -37,7 +41,8 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
       },
       {
         actions: [
-          "textract:*",
+          "bedrock:InvokeModel",
+          "bedrock:InvokeModelWithResponseStream",
           "logs:CreateLogGroup",
           "logs:CreateLogStream", 
           "logs:PutLogEvents"
@@ -68,7 +73,18 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
     sourceArn: infrastructure.bucket.arn,
   });
 
+  // HTTP API for Twilio webhooks (AI Skills Assessment)
+  const assessmentApi = new sst.aws.ApiGatewayV2("AssessmentWebhookApi");
+  
+  // Webhook endpoints for AI Skills Assessment
+  assessmentApi.route("POST /webhook", processingFunction.arn);
+  assessmentApi.route("POST /webhook/status", processingFunction.arn);
+  assessmentApi.route("POST /question/{questionId}", processingFunction.arn);
+  assessmentApi.route("POST /complete/{assessmentId}", processingFunction.arn);
+  assessmentApi.route("POST /initiate", processingFunction.arn);
+
   return {
     processingFunction,
+    assessmentApi,
   };
 }

@@ -18,17 +18,22 @@
 - **FastAPI**: API framework for HTTP endpoints
 - **Celery + Redis**: Task queue management for async processing
 
-### AI & Voice Services:
-- **Amazon Transcribe**: Real-time speech-to-text (English/Spanish)
-- **Amazon Polly**: Text-to-speech synthesis (bilingual support)
-- **AWS Connect or Twilio**: Voice calling infrastructure  
-- **LangChain**: LLM workflow management and prompt engineering
+### AI & Voice Services - SIMPLIFIED FOR POC:
+- **Twilio Voice API**: Outbound calls + built-in STT via <Gather> verb
+- **AWS Bedrock**: LLM analysis (already exists in template)
 
-### Data Storage:
-- **S3**: Call recordings, transcripts, resumes (with lifecycle policies)
-- **DynamoDB**: Worker profiles, assessments, skill templates, call sessions
-- **SQS**: Async message processing queue
-- **ElastiCache Redis**: Caching and session management
+### ELIMINATED SERVICES (POC Simplifications):
+- ❌ **Amazon Transcribe**: Replaced by Twilio's built-in STT
+- ❌ **Amazon Polly**: Using pre-recorded audio files instead
+- ❌ **LangChain**: Direct Bedrock API calls sufficient
+
+### Data Storage - SIMPLIFIED FOR POC:
+- **S3**: Pre-recorded questions, call recordings, transcripts, assessment results (JSON files)
+- **SQS**: Async message processing (already in template, optional for POC)
+
+### ELIMINATED STORAGE (POC Simplifications):
+- ❌ **DynamoDB**: Replaced with S3 JSON files for simplicity
+- ❌ **ElastiCache Redis**: No caching needed for POC
 
 ### Development Environment:
 - **VS Code DevContainer**: Consistent development environment
@@ -60,12 +65,12 @@ cd functions && uv sync    # Python dependencies
 aws configure
 ```
 
-### Development Workflow:
+### Development Workflow - SIMPLIFIED FOR POC:
 ```bash
-# Deploy to development
+# Deploy to development (ultra-simple stack)
 sst deploy --stage dev
 
-# Local function testing
+# Local function testing (minimal dependencies)
 cd functions && python -m pytest
 
 # Deploy to staging/production
@@ -73,19 +78,33 @@ sst deploy --stage staging
 sst deploy --stage production  # Protected stage
 ```
 
+### POC Assessment Workflow:
+1. **Trigger**: API call or S3 upload triggers Lambda assessment function
+2. **Call**: Twilio places outbound call to worker phone number
+3. **Static Q&A Flow**:
+   - Play pre-recorded intro.mp3 from S3
+   - `<Gather speech="true">` plays question1.mp3, collects/transcribes response
+   - `<Gather speech="true">` plays question2.mp3, collects/transcribes response
+   - Play pre-recorded closing.mp3
+4. **Analysis**: AWS Bedrock analyzes combined transcript for skills assessment
+5. **Storage**: Write assessment results as JSON file to S3
+6. **Complete**: Call ends, results immediately available in S3
+
 ## Dependencies
 
-### Runtime Dependencies (`requirements.txt`):
-- **boto3>=1.34.0**: Enhanced AWS SDK features
-- **twilio>=8.0.0**: Voice calling service (if using Twilio)
-- **amazon-transcribe-streaming**: Real-time transcription
-- **langchain>=0.1.0**: LLM workflow management
-- **pydantic>=2.0.0**: Data validation models
-- **phonenumbers>=8.13.0**: Phone number validation
-- **textblob>=0.17.1**: Language detection
-- **fastapi>=0.100.0**: API framework
-- **celery>=5.3.0**: Task queue management
-- **redis>=5.0.0**: Caching and session management
+### Runtime Dependencies (`requirements.txt`) - SIMPLIFIED FOR POC:
+- **boto3>=1.34.0**: AWS SDK (already in template)
+- **twilio>=8.0.0**: Voice calling + built-in STT via <Gather> verb
+
+### ELIMINATED DEPENDENCIES (POC Simplifications):
+- ❌ **amazon-transcribe-streaming**: Replaced by Twilio's built-in STT
+- ❌ **langchain>=0.1.0**: Direct Bedrock calls sufficient
+- ❌ **pydantic>=2.0.0**: Basic dict validation for POC
+- ❌ **phonenumbers>=8.13.0**: Basic string validation sufficient
+- ❌ **textblob>=0.17.1**: English-only for Phase 1
+- ❌ **fastapi>=0.100.0**: Simple Lambda handlers sufficient
+- ❌ **celery>=5.3.0**: Direct Lambda invocation, no task queue
+- ❌ **redis>=5.0.0**: S3-based storage, no caching needed
 
 ### Development Dependencies (`requirements-dev.txt`):
 - **pytest**: Testing framework

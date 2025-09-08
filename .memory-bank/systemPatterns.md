@@ -14,17 +14,16 @@ The system extends the SST AWS Project Template to create a specialized AI-power
 - **DynamoDB**: Worker profiles, assessment data, skill templates
 - **Lambda Functions**: Python 3.12 runtime with specialized handlers
 
-### AI Voice Calling Layer (New):
-- **AWS Connect or Twilio Voice API**: Voice calling infrastructure
-- **Amazon Transcribe**: Real-time speech-to-text with bilingual support
-- **Amazon Polly**: Text-to-speech for bilingual conversations
-- **Call Management System**: Session routing and state management
+### AI Voice Calling Layer - SIMPLIFIED FOR POC:
+- **Twilio Voice API**: Outbound calls + built-in STT via <Gather> verb
+- **Pre-recorded Audio Files**: Static questions stored in S3 (no TTS needed)
+- **Simple Call Flow**: Linear Q&A sequence with no complex state management
 
-### LLM Assessment Layer (New):
-- **Amazon Bedrock**: Claude/GPT integration for assessment analysis
-- **Custom Prompt Engineering**: Skills-specific conversation flows
-- **Response Analysis**: Scoring algorithms and qualification determination
-- **Conversation Flow Management**: Interview logic and state transitions
+### LLM Assessment Layer - SIMPLIFIED FOR POC:
+- **Amazon Bedrock**: Claude/GPT integration for transcript analysis (already exists)
+- **Direct API Calls**: Simple prompt/response pattern, no complex workflow management
+- **Basic Scoring**: Simple qualification determination (approved/rejected/needs_review)
+- **S3 Result Storage**: JSON files instead of complex database schemas
 
 ## Design Patterns in Use
 
@@ -34,34 +33,34 @@ The system extends the SST AWS Project Template to create a specialized AI-power
 - **Stage-Aware Deployment**: dev/staging/production with environment-specific settings
 - **Never hardcode**: All project-specific values flow through configuration
 
-### Event-Driven Architecture:
-- **S3 Event Triggers**: Lambda functions triggered by file uploads to `input/` prefix
-- **SQS Processing**: Asynchronous workflow for long-running assessments
-- **Webhook Callbacks**: External voice service integration points
-- **State Management**: DynamoDB for persistent workflow state
+### Simplified Event-Driven Architecture (POC):
+- **Direct Lambda Triggers**: Simple function calls, no complex event handling
+- **Twilio Webhooks**: Single callback URL for call completion status
+- **S3 File Storage**: JSON results and audio files, no event triggers needed
+- **No Persistent State**: Stateless functions, call data stored in S3
 
-### Microservices Pattern:
-- **Specialized Handlers**: `assessment_handler.py`, `voice_handler.py`, `integration_handler.py`
-- **Service Layer**: `voice_service.py`, `llm_service.py`, `assessment_service.py`, `resume_service.py`
-- **Model Layer**: `worker.py`, `skill.py`, `assessment.py` for data validation
-- **Utility Layer**: Language, compliance, and integration utilities
+### Simplified Handler Pattern (POC):
+- **Single Handler**: `assessment_handler.py` for all assessment logic
+- **Minimal Services**: Direct Twilio API calls, direct Bedrock API calls
+- **Basic Data Structures**: Python dicts and JSON files, no complex models
+- **No Utility Layer**: Inline logic sufficient for POC scope
 
 ## Data Flow
 
-### Assessment Workflow:
-1. **Initiation**: Worker skill application triggers assessment via `/api/assessments/initiate`
-2. **Scheduling**: System schedules AI interview call via voice service integration
-3. **Conversation**: Real-time voice call with AI agent conducting structured interview
-4. **Processing**: Transcript analysis through LLM for skills evaluation and scoring
-5. **Results**: Qualification determination and resume generation
-6. **Integration**: Results posted back to Gravy Work platform with audit trail
+### Simplified Assessment Workflow (POC):
+1. **Initiation**: Lambda function triggered with worker phone number and skill type
+2. **Call**: Twilio immediately places outbound call to worker
+3. **Static Q&A**: Pre-recorded questions played, worker responses collected via STT
+4. **Analysis**: Combined transcript sent to Bedrock for skills evaluation
+5. **Storage**: Assessment results saved as JSON file to S3
+6. **Complete**: Simple success/failure response, no complex integration
 
-### Call Session Flow:
-1. **Session Creation**: CallSessions DynamoDB record with scheduled time and skill IDs
-2. **Call Initiation**: Voice service places call to worker phone number
-3. **Real-time Processing**: Transcribe converts speech, LLM generates responses, Polly speaks responses
-4. **State Persistence**: Conversation state maintained in DynamoDB throughout call
-5. **Completion**: Final assessment scoring and qualification determination
+### Simplified Call Session Flow (POC):
+1. **Direct Call**: Lambda triggers Twilio call with pre-built TwiML flow
+2. **Audio Playback**: S3-hosted audio files played via Twilio <Play> verb
+3. **Speech Collection**: <Gather speech="true"> collects and transcribes responses
+4. **No State Management**: Simple linear flow, no persistent session state
+5. **Immediate Processing**: All responses collected, sent to Bedrock at call end
 
 ## Key Technical Decisions
 

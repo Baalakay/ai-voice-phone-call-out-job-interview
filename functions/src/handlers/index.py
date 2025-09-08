@@ -1,8 +1,7 @@
 """
-Main Lambda handler for project processing.
+Main Lambda handler for AI Skills Assessment Platform.
 
-This is the entry point for your Lambda function. Customize this file
-based on your specific project requirements.
+Routes requests between S3 processing (original template) and assessment webhooks (new).
 """
 
 import json
@@ -24,11 +23,29 @@ def handler(event: Dict[str, Any], context) -> Dict[str, Any]:
     """
     Main Lambda handler function.
     
-    This handler processes S3 events and can be customized for your specific use case.
+    Routes between:
+    - S3 events (original template functionality)  
+    - HTTP API requests for AI Skills Assessment webhooks
     """
     try:
         logger.info(f"Received event: {json.dumps(event, default=str)}")
         
+        # Check if this is an HTTP API event (assessment webhook)
+        if 'requestContext' in event and 'http' in event['requestContext']:
+            # Route to assessment handler
+            from .assessment_handler import handler as assessment_handler
+            return assessment_handler(event, context)
+        
+        # Otherwise, process as S3 event (original template functionality)
+        return handle_s3_event(event, context)
+        
+    except Exception as e:
+        logger.error(f"Error processing event: {str(e)}")
+        raise
+
+def handle_s3_event(event: Dict[str, Any], context) -> Dict[str, Any]:
+    """Handle original S3 events from the SST template."""
+    try:
         # Get environment variables
         environment = os.environ.get('ENVIRONMENT', 'dev')
         data_table_name = os.environ.get('DATA_TABLE')
@@ -36,7 +53,7 @@ def handler(event: Dict[str, Any], context) -> Dict[str, Any]:
         output_bucket = os.environ.get('OUTPUT_BUCKET')
         project_name = os.environ.get('PROJECT_NAME')
         
-        logger.info(f"Processing event for project: {project_name} in environment: {environment}")
+        logger.info(f"Processing S3 event for project: {project_name} in environment: {environment}")
         
         # Process S3 events
         if 'Records' in event:
@@ -56,13 +73,13 @@ def handler(event: Dict[str, Any], context) -> Dict[str, Any]:
         return {
             'statusCode': 200,
             'body': json.dumps({
-                'message': f'Successfully processed event for {project_name}',
+                'message': f'Successfully processed S3 event for {project_name}',
                 'environment': environment
             })
         }
         
     except Exception as e:
-        logger.error(f"Error processing event: {str(e)}")
+        logger.error(f"Error processing S3 event: {str(e)}")
         raise
 
 def process_file(bucket: str, key: str, data_table_name: str, queue_url: str, output_bucket: str) -> Dict[str, Any]:
