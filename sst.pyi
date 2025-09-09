@@ -6,13 +6,16 @@ class Resource:
     class App:
         name: str
         stage: str
-    class DataTable:
-        name: str
+    class AssessmentWebhookApi:
         type: str
+        url: str
     class ProcessingFunction:
         name: str
         type: str
     class ProcessingQueue:
         type: str
         url: str
+    class ProjectBucket:
+        name: str
+        type: str
 

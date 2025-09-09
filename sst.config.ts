@@ -1,22 +1,18 @@
 /// <reference path="./.sst/platform/config.d.ts" />
 
-import { projectConfig } from "./project.config";
-
 export default $config({
   app(input) {
     const stage = input?.stage || "dev";
-    const stageConfig = projectConfig.stages[stage as keyof typeof projectConfig.stages] || projectConfig.stages.dev;
     
     return {
-      name: projectConfig.projectName,
-      removal: stageConfig.removal,
-      protect: stageConfig.protect,
+      name: "gravywork",
+      removal: stage === "production" ? "retain" : "remove",
+      protect: stage === "production",
       home: "aws",
-      // Optional: Set region if specified in config
       providers: {
         aws: {
-          region: projectConfig.aws.region,
-          profile: projectConfig.aws.profile,
+          region: "us-east-1",
+          profile: "default",
         },
       },
     };
@@ -35,10 +31,10 @@ export default $config({
       // Infrastructure resources
       bucket: infrastructure.bucket,
       processingQueue: infrastructure.processingQueue,
-      dataTable: infrastructure.dataTable,
       
       // Application resources
       processingFunction: application.processingFunction,
+      assessmentApi: application.assessmentApi,
     };
   },
 });

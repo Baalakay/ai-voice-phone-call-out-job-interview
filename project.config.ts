@@ -14,7 +14,7 @@
 
 export const projectConfig = {
   // 🏷️ Project identification (MODIFY THESE)
-  projectName: "gravy-work", // AI Skills Assessment Platform for Gig Work Staffing
+  projectName: "gravywork", // AI Skills Assessment Platform for Gig Work Staffing
   description: "AI Voice Agent for automated worker skills assessment and screening", // Brief project description
   
   // 🌍 AWS configuration
@@ -49,7 +49,19 @@ export const projectConfig = {
   
   // 🏢 Organization/environment prefixes (MODIFY THESE)
   naming: {
-    orgPrefix: "gravywork", // Organization prefix for all resource names
+    orgPrefix: "innovativesol", // Organization prefix for all resource names
+  },
+
+  // 📱 Twilio Configuration (MODIFY THESE)
+  twilio: {
+    accountSid: "AC4e658dd5cf5c6e36514e5bae7f4c1bf7", // Live Account SID
+    authToken: "db19869a6764956183410a5169a41ab0",   // Auth Token
+    phoneNumber: "+14722368895",                      // Your Twilio number: (472) 236-8895
+    webhookUrls: {
+      dev: "https://eih1khont2.execute-api.us-east-1.amazonaws.com",
+      staging: "https://placeholder-staging.execute-api.us-east-1.amazonaws.com", 
+      production: "https://placeholder-prod.execute-api.us-east-1.amazonaws.com",
+    }
   },
   
   // 🚀 Stage-specific configuration (usually no changes needed)
@@ -75,14 +87,24 @@ export const generateResourceName = (resourceType: string, stage: string) => {
 };
 
 export const generateFunctionName = (stage: string) => {
-  return `${projectConfig.projectName}-${stage}`;
+  return `${projectConfig.projectName}-processor-${stage}`;
 };
 
 export const generateBucketName = (stage: string) => {
   if (projectConfig.resources.bucket.useExisting) {
     return projectConfig.resources.bucket.existingName;
   }
-  return generateResourceName("bucket", stage);
+  return generateResourceName("assets", stage);
+};
+
+// Helper functions for Twilio configuration
+export const getTwilioConfig = (stage: string) => {
+  return {
+    accountSid: projectConfig.twilio.accountSid,
+    authToken: projectConfig.twilio.authToken, 
+    phoneNumber: projectConfig.twilio.phoneNumber,
+    webhookUrl: projectConfig.twilio.webhookUrls[stage as keyof typeof projectConfig.twilio.webhookUrls] || projectConfig.twilio.webhookUrls.dev,
+  };
 };
 
 // Type exports for better TypeScript support

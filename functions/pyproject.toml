@@ -1,12 +1,13 @@
 [project]
 name = "functions"
 version = "0.1.0"
-description = "PDF Processing Lambda Function"
+description = "AI Skills Assessment Lambda Function"
 requires-python = ">=3.12"
 dependencies = [
     "boto3>=1.40.13",
     "botocore>=1.40.13",
-    "amazon-textract-prettyprinter>=0.1.10",
+    "twilio>=8.0.0",
+    "sst",
 ]
 
 [build-system]
@@ -15,3 +16,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
+
+[tool.uv.sources]
+sst = { git = "https://github.com/sst/sst.git", subdirectory = "sdk/python", branch = "dev" }

@@ -5,9 +5,9 @@
 
 declare module "sst" {
   export interface Resource {
-    "DataTable": {
-      "name": string
-      "type": "sst.aws.Dynamo"
+    "AssessmentWebhookApi": {
+      "type": "sst.aws.ApiGatewayV2"
+      "url": string
     }
     "ProcessingFunction": {
       "name": string
@@ -16,6 +16,10 @@ declare module "sst" {
     "ProcessingQueue": {
       "type": "sst.aws.Queue"
       "url": string
+    }
+    "ProjectBucket": {
+      "name": string
+      "type": "sst.aws.Bucket"
     }
   }
 }

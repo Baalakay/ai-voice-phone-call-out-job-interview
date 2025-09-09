@@ -12,26 +12,21 @@ export function InfrastructureStack() {
         "ProjectBucket",
         projectConfig.resources.bucket.existingName
       )
-    : new sst.aws.Bucket("ProjectBucket");
+    : new sst.aws.Bucket("ProjectBucket", {
+        transform: {
+          bucket: {
+            bucket: generateBucketName(stage)
+          }
+        }
+      });
 
   // SQS Queue for processing
   const processingQueue = new sst.aws.Queue("ProcessingQueue", {
     visibilityTimeout: projectConfig.resources.queue.visibilityTimeout,
   });
 
-  // DynamoDB Table for tracking processing status (optional - can be removed if not needed)
-  const dataTable = new sst.aws.Dynamo("DataTable", {
-    fields: {
-      id: "string",
-      status: "string",
-      timestamp: "string",
-    },
-    primaryIndex: { hashKey: "id" },
-  });
-
   return {
     bucket,
     processingQueue,
-    dataTable,
   };
 }

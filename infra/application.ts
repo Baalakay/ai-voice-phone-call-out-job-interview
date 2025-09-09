@@ -1,15 +1,16 @@
 import * as aws from "@pulumi/aws";
-import { projectConfig, generateFunctionName } from "../project.config";
+import { projectConfig, generateFunctionName, getTwilioConfig } from "../project.config";
 
 export function ApplicationStack(infrastructure: ReturnType<typeof import("./infrastructure").InfrastructureStack>) {
   // Get current stage
   const stage = $app.stage;
+  const twilioConfig = getTwilioConfig(stage);
   
   // Main Processing Function - configurable for any project!
   const processingFunction = new sst.aws.Function("ProcessingFunction", {
     name: generateFunctionName(stage),
-    handler: projectConfig.resources.lambda.handler,
-    runtime: projectConfig.resources.lambda.runtime,
+    handler: "functions/src/functions/webhook_simple.handler",
+    runtime: "python3.12",
     timeout: projectConfig.resources.lambda.timeout,
     memory: projectConfig.resources.lambda.memory,
     architecture: projectConfig.resources.lambda.architecture,
@@ -17,27 +18,25 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
     layers: [],
     environment: {
       ENVIRONMENT: stage,
-      DATA_TABLE: infrastructure.dataTable.name,
+      // DATA_TABLE: removed for simplified S3-based storage
       QUEUE_URL: infrastructure.processingQueue.url,
       OUTPUT_BUCKET: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
       PROJECT_NAME: projectConfig.projectName,
       
-      // Twilio configuration for AI Skills Assessment
-      TWILIO_AUTH_TOKEN: stage === "production" ? process.env.TWILIO_AUTH_TOKEN_PROD || "" : process.env.TWILIO_AUTH_TOKEN_DEV || "",
-      TWILIO_WEBHOOK_URL: stage === "dev" ? "https://placeholder-dev.execute-api.us-east-1.amazonaws.com" : "https://placeholder-prod.execute-api.us-east-1.amazonaws.com",
+      // Twilio configuration for AI Skills Assessment - from centralized config
+      TWILIO_ACCOUNT_SID: twilioConfig.accountSid,
+      TWILIO_AUTH_TOKEN: twilioConfig.authToken,
+      TWILIO_PHONE_NUMBER: twilioConfig.phoneNumber,
+      TWILIO_WEBHOOK_URL: twilioConfig.webhookUrl,
     },
     permissions: [
       {
         actions: ["s3:*"],
-        resources: [infrastructure.bucket.arn, `${infrastructure.bucket.arn}/*`],
-      },
-      {
-        actions: ["dynamodb:*"],
-        resources: [infrastructure.dataTable.arn],
+        resources: ["*"],
       },
       {
         actions: ["sqs:*"],
-        resources: [infrastructure.processingQueue.arn],
+        resources: ["*"],
       },
       {
         actions: [
@@ -78,6 +77,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
   
   // Webhook endpoints for AI Skills Assessment
   assessmentApi.route("POST /webhook", processingFunction.arn);
+  assessmentApi.route("POST /webhook/recording", processingFunction.arn);
   assessmentApi.route("POST /webhook/status", processingFunction.arn);
   assessmentApi.route("POST /question/{questionId}", processingFunction.arn);
   assessmentApi.route("POST /complete/{assessmentId}", processingFunction.arn);
