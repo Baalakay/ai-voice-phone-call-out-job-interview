@@ -78,6 +78,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
   // Webhook endpoints for AI Skills Assessment
   assessmentApi.route("POST /webhook", processingFunction.arn);
   assessmentApi.route("POST /webhook/recording", processingFunction.arn);
+  assessmentApi.route("POST /webhook/gather", processingFunction.arn);
   assessmentApi.route("POST /webhook/status", processingFunction.arn);
   assessmentApi.route("POST /question/{questionId}", processingFunction.arn);
   assessmentApi.route("POST /complete/{assessmentId}", processingFunction.arn);

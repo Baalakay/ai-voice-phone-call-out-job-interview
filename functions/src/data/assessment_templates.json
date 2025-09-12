@@ -1,0 +1,219 @@
+{
+  "banquet_server": {
+    "name": "Banquet Server / Food Runner",
+    "language_requirement": "bilingual",
+    "total_time_minutes": 10,
+    "speech_timeout": "5",
+    "questions_sequence": [
+      "intro",
+      "experience_1",
+      "experience_2", 
+      "experience_3",
+      "knowledge_setup",
+      "knowledge_wine",
+      "knowledge_clearing",
+      "knowledge_scenario",
+      "english_greeting",
+      "english_complaint",
+      "goodbye"
+    ],
+    "experience_criteria": {
+      "core_duties": [
+        "Set up / break down event space (linens, flatware, buffet stations)",
+        "Serve food and beverages (deliver plated meals, pour/refill wine/water)",
+        "Follow course sequence (appetizer/salad → entrée → dessert)",
+        "Clear and reset tables (pre-bussing, full resets)",
+        "Guest interaction (greet guests, handle requests)",
+        "Team communication (work with captains, kitchen, bartenders)"
+      ],
+      "minimum_duties": 3,
+      "evaluation": {
+        "pass": "Credible workplace/timeframe + ≥2 duties",
+        "review": "Vague workplace, no timeframe, or only 1 duty",
+        "fail": "No workplace/timeframe, no relevant duties"
+      }
+    },
+    "knowledge_checks": {
+      "place_setting": {
+        "question": "How do you know if a place setting is correct? Describe it.",
+        "ideal": "Forks on left (salad fork outside, entrée fork inside), knife and spoon on right, napkin folded, bread plate with butter knife above forks, wine glass at tip of knife, water glass above/right, all aligned evenly",
+        "acceptable": "Mentions multiple correct placements (e.g., fork left, knife right, glasses on right)",
+        "red_flag": "Vague/incorrect (e.g., \"just put forks and plates\")"
+      },
+      "wine_service": {
+        "question": "When pouring wine, which side do you approach from, and why?",
+        "ideal": "From the right, because glasses are on the right and beverages are served from the right",
+        "acceptable": "From the right",
+        "red_flag": "From the left / Doesn't matter"
+      },
+      "clearing": {
+        "question": "From which side do you clear plates?",
+        "ideal": "From the right, to avoid reaching across guests",
+        "acceptable": "Usually from the right",
+        "red_flag": "From the left"
+      },
+      "guest_scenario": {
+        "question": "If a guest says they are vegetarian but their entrée has meat, what do you do?",
+        "ideal": "Apologize, notify captain/chef, offer an alternative, ensure guest satisfaction",
+        "acceptable": "Tell the chef and replace it",
+        "red_flag": "Ignore them, Tell them to eat it"
+      }
+    },
+    "english_communication": {
+      "greeting": {
+        "question": "How would you greet a guest when they arrive at your table?",
+        "ideal": "Good evening, welcome! May I start you with water or a drink?",
+        "acceptable": "Hello, how are you today?",
+        "red_flag": "One-word reply (Hi) / non-English"
+      },
+      "complaint": {
+        "question": "If a guest says their food is cold, what do you do?",
+        "ideal": "I'm so sorry about that. I'll take it back and have it fixed right away",
+        "acceptable": "I'll bring it back to the kitchen",
+        "red_flag": "Not my problem, Just eat it"
+      }
+    }
+  },
+  "bartender": {
+    "name": "Bartender",
+    "language_requirement": "english_only",
+    "total_time_minutes": 8,
+    "speech_timeout": "4",
+    "english_notice": "This interview is conducted in English since bartenders must be able to interact with guests in English. If you are not comfortable continuing in English, you may end the interview here.",
+    "questions_sequence": [
+      "intro",
+      "experience_1",
+      "experience_2",
+      "experience_3", 
+      "knowledge_cosmopolitan_glass",
+      "knowledge_old_fashioned_glass",
+      "knowledge_margarita",
+      "knowledge_old_fashioned",
+      "knowledge_tools",
+      "knowledge_service",
+      "goodbye"
+    ],
+    "experience_criteria": {
+      "core_duties": [
+        "Preparing and serving drinks (cocktails, beer, wine, non-alcoholic)",
+        "Setting up and maintaining the bar (stocking, cleaning, organizing tools/glassware)",
+        "Taking and processing orders, handling payments",
+        "Guest engagement (recommendations, answering drink/menu questions)",
+        "Responsible alcohol service (checking IDs, cutting off intoxicated guests)",
+        "Coordinating with servers and barbacks"
+      ],
+      "minimum_duties": 3,
+      "evaluation": {
+        "pass": "≥1 credible workplace + timeframe + ≥3 duties",
+        "review": "Only 2 duties OR vague",
+        "fail": "No workplace/timeframe OR irrelevant duties"
+      }
+    },
+    "knowledge_checks": {
+      "cosmopolitan_glass": {
+        "question": "In what glass would you typically serve a Cosmopolitan?",
+        "ideal": "Martini glass or cocktail glass",
+        "acceptable": "Cocktail glass or martini-style glass",
+        "red_flag": "Wrong glass (rocks, highball, etc.) or vague answer"
+      },
+      "old_fashioned_glass": {
+        "question": "In what glass would you typically serve an Old Fashioned?",
+        "ideal": "Lowball glass, rocks glass, or old fashioned glass",
+        "acceptable": "Short glass, rocks glass, or whiskey glass",
+        "red_flag": "Wrong glass (martini, highball, etc.) or vague answer"
+      },
+      "margarita": {
+        "question": "What are the basic ingredients in a Margarita?",
+        "ideal": "Tequila, triple sec/orange liqueur, lime juice, salt rim",
+        "acceptable": "Tequila, lime, triple sec",
+        "red_flag": "Leaves out tequila or nonsense recipe"
+      },
+      "old_fashioned": {
+        "question": "What are the basics of an Old Fashioned?",
+        "ideal": "Whiskey/bourbon, bitters, sugar, orange garnish",
+        "acceptable": "Whiskey, bitters, sugar",
+        "red_flag": "Misses whiskey or invents ingredients"
+      },
+      "tools": {
+        "question": "What tools would you use to shake and strain a cocktail?",
+        "ideal": "Shaker tin, strainer (Hawthorne/fine mesh), jigger",
+        "acceptable": "Shaker and strainer",
+        "red_flag": "Doesn't know tools / says just pour it"
+      },
+      "responsible_service": {
+        "question": "If a guest is overly intoxicated, how do you handle it?",
+        "ideal": "Politely cut them off, offer water, suggest food, offer taxi/ride",
+        "acceptable": "Stop serving and give water",
+        "red_flag": "Keep serving / ignores issue"
+      }
+    }
+  },
+  "host": {
+    "name": "Host",
+    "language_requirement": "english_only",
+    "total_time_minutes": 12,
+    "speech_timeout": "4",
+    "english_notice": "This interview is conducted in English since hosts must be able to interact with guests in English. If you are not comfortable continuing in English, you may end the interview here.",
+    "questions_sequence": [
+      "intro",
+      "experience_1",
+      "experience_2",
+      "experience_3",
+      "knowledge_pos",
+      "knowledge_seating", 
+      "knowledge_phone",
+      "knowledge_reservation",
+      "knowledge_walkin",
+      "goodbye"
+    ],
+    "experience_criteria": {
+      "core_duties": [
+        "Greeting and seating guests",
+        "Managing reservations and waitlists (POS/reservation system)",
+        "Assigning tables based on server sections / bandwidth",
+        "Answering phone calls, taking guest info",
+        "Handling to-go orders over the phone",
+        "Managing special requests (large parties, celebrations)",
+        "Resolving discrepancies (lost reservations, unexpected party sizes)"
+      ],
+      "minimum_duties": 3,
+      "evaluation": {
+        "pass": "≥1 credible workplace + timeframe + ≥3 duties",
+        "review": "Only 2 duties OR vague",
+        "fail": "No workplace/timeframe OR irrelevant duties"
+      }
+    },
+    "knowledge_checks": {
+      "pos_system": {
+        "question": "Have you used a reservation system like Toast, OpenTable, or Resy? How do you use it?",
+        "ideal": "Create/update reservations, check guest notes, manage table flow, update waitlist",
+        "acceptable": "Yes, I enter guest info and track tables",
+        "red_flag": "No, never used it (unless strong other experience)"
+      },
+      "seating_logic": {
+        "question": "When assigning tables, how do you decide where to seat guests?",
+        "ideal": "Balance server sections, spread tables based on bandwidth, consider guest preferences",
+        "acceptable": "Seat them where there's an open table, but try to spread evenly",
+        "red_flag": "Seat randomly / First table I see"
+      },
+      "phone_etiquette": {
+        "question": "What information should you collect when a guest calls to make a reservation?",
+        "ideal": "Name, party size, time/date, phone number, special notes (allergies, celebrations)",
+        "acceptable": "Name, time, party size",
+        "red_flag": "Doesn't know what to ask"
+      },
+      "lost_reservation": {
+        "question": "How would you handle a guest who arrives saying they have a reservation, but you don't see it in the system?",
+        "ideal": "Apologize, try to accommodate (find a table, offer waitlist priority), communicate clearly",
+        "acceptable": "Tell them I'll try to fit them in",
+        "red_flag": "Tell them to leave / Not my problem"
+      },
+      "large_walkin": {
+        "question": "How do you handle a walk-in group of 10 guests?",
+        "ideal": "Check if space can be rearranged, note wait time, split into sections if needed, flag servers for support",
+        "acceptable": "Tell them the wait time, try to seat them together",
+        "red_flag": "Seat them anywhere without checking / Refuse without explanation"
+      }
+    }
+  }
+}
