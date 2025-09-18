@@ -6,6 +6,9 @@ class Resource:
     class App:
         name: str
         stage: str
+    class AssessmentProcessor:
+        name: str
+        type: str
     class AssessmentWebhookApi:
         type: str
         url: str

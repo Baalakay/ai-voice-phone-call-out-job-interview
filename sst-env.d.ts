@@ -5,6 +5,10 @@
 
 declare module "sst" {
   export interface Resource {
+    "AssessmentProcessor": {
+      "name": string
+      "type": "sst.aws.Function"
+    }
     "AssessmentWebhookApi": {
       "type": "sst.aws.ApiGatewayV2"
       "url": string

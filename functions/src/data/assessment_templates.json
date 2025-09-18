@@ -17,6 +17,23 @@
       "english_complaint",
       "goodbye"
     ],
+    "scoring_categories": {
+      "baseline": {
+        "name": "Baseline Criteria",
+        "questions": ["english_greeting", "english_complaint"],
+        "description": "Basic English customer service ability and polite, helpful tone"
+      },
+      "experience": {
+        "name": "Experience & Responsibilities", 
+        "questions": ["experience_1", "experience_2", "experience_3"],
+        "description": "Credibility check for relevant work experience and responsibilities"
+      },
+      "knowledge": {
+        "name": "Knowledge Checks",
+        "questions": ["knowledge_setup", "knowledge_wine", "knowledge_clearing", "knowledge_scenario"],
+        "description": "Technical knowledge of banquet service procedures"
+      }
+    },
     "experience_criteria": {
       "core_duties": [
         "Set up / break down event space (linens, flatware, buffet stations)",
@@ -38,25 +55,49 @@
         "question": "How do you know if a place setting is correct? Describe it.",
         "ideal": "Forks on left (salad fork outside, entrée fork inside), knife and spoon on right, napkin folded, bread plate with butter knife above forks, wine glass at tip of knife, water glass above/right, all aligned evenly",
         "acceptable": "Mentions multiple correct placements (e.g., fork left, knife right, glasses on right)",
-        "red_flag": "Vague/incorrect (e.g., \"just put forks and plates\")"
+        "red_flag": "Vague/incorrect (e.g., \"just put forks and plates\")",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "wine_service": {
         "question": "When pouring wine, which side do you approach from, and why?",
         "ideal": "From the right, because glasses are on the right and beverages are served from the right",
         "acceptable": "From the right",
-        "red_flag": "From the left / Doesn't matter"
+        "red_flag": "From the left / Doesn't matter",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "clearing": {
         "question": "From which side do you clear plates?",
         "ideal": "From the right, to avoid reaching across guests",
         "acceptable": "Usually from the right",
-        "red_flag": "From the left"
+        "red_flag": "From the left",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "guest_scenario": {
         "question": "If a guest says they are vegetarian but their entrée has meat, what do you do?",
         "ideal": "Apologize, notify captain/chef, offer an alternative, ensure guest satisfaction",
         "acceptable": "Tell the chef and replace it",
-        "red_flag": "Ignore them, Tell them to eat it"
+        "red_flag": "Ignore them, Tell them to eat it",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       }
     },
     "english_communication": {
@@ -64,13 +105,25 @@
         "question": "How would you greet a guest when they arrive at your table?",
         "ideal": "Good evening, welcome! May I start you with water or a drink?",
         "acceptable": "Hello, how are you today?",
-        "red_flag": "One-word reply (Hi) / non-English"
+        "red_flag": "One-word reply (Hi) / non-English",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "complaint": {
         "question": "If a guest says their food is cold, what do you do?",
         "ideal": "I'm so sorry about that. I'll take it back and have it fixed right away",
         "acceptable": "I'll bring it back to the kitchen",
-        "red_flag": "Not my problem, Just eat it"
+        "red_flag": "Not my problem, Just eat it",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       }
     }
   },
@@ -93,6 +146,23 @@
       "knowledge_service",
       "goodbye"
     ],
+    "scoring_categories": {
+      "baseline": {
+        "name": "Baseline Criteria",
+        "questions": ["knowledge_service"],
+        "description": "English fluency and responsible alcohol service judgment"
+      },
+      "experience": {
+        "name": "Experience & Responsibilities", 
+        "questions": ["experience_1", "experience_2", "experience_3"],
+        "description": "Credibility check for relevant bartending experience and responsibilities"
+      },
+      "knowledge": {
+        "name": "Knowledge Checks",
+        "questions": ["knowledge_cosmopolitan_glass", "knowledge_old_fashioned_glass", "knowledge_margarita", "knowledge_old_fashioned", "knowledge_tools"],
+        "description": "Technical knowledge of bartending skills, glassware, recipes, and tools"
+      }
+    },
     "experience_criteria": {
       "core_duties": [
         "Preparing and serving drinks (cocktails, beer, wine, non-alcoholic)",
@@ -114,37 +184,73 @@
         "question": "In what glass would you typically serve a Cosmopolitan?",
         "ideal": "Martini glass or cocktail glass",
         "acceptable": "Cocktail glass or martini-style glass",
-        "red_flag": "Wrong glass (rocks, highball, etc.) or vague answer"
+        "red_flag": "Wrong glass (rocks, highball, etc.) or vague answer",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "old_fashioned_glass": {
         "question": "In what glass would you typically serve an Old Fashioned?",
         "ideal": "Lowball glass, rocks glass, or old fashioned glass",
         "acceptable": "Short glass, rocks glass, or whiskey glass",
-        "red_flag": "Wrong glass (martini, highball, etc.) or vague answer"
+        "red_flag": "Wrong glass (martini, highball, etc.) or vague answer",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "margarita": {
         "question": "What are the basic ingredients in a Margarita?",
         "ideal": "Tequila, triple sec/orange liqueur, lime juice, salt rim",
         "acceptable": "Tequila, lime, triple sec",
-        "red_flag": "Leaves out tequila or nonsense recipe"
+        "red_flag": "Leaves out tequila or nonsense recipe",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "old_fashioned": {
         "question": "What are the basics of an Old Fashioned?",
         "ideal": "Whiskey/bourbon, bitters, sugar, orange garnish",
         "acceptable": "Whiskey, bitters, sugar",
-        "red_flag": "Misses whiskey or invents ingredients"
+        "red_flag": "Misses whiskey or invents ingredients",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "tools": {
         "question": "What tools would you use to shake and strain a cocktail?",
         "ideal": "Shaker tin, strainer (Hawthorne/fine mesh), jigger",
         "acceptable": "Shaker and strainer",
-        "red_flag": "Doesn't know tools / says just pour it"
+        "red_flag": "Doesn't know tools / says just pour it",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       },
       "responsible_service": {
         "question": "If a guest is overly intoxicated, how do you handle it?",
         "ideal": "Politely cut them off, offer water, suggest food, offer taxi/ride",
         "acceptable": "Stop serving and give water",
-        "red_flag": "Keep serving / ignores issue"
+        "red_flag": "Keep serving / ignores issue",
+        "scoring": {
+          "ideal": 10,
+          "acceptable": 7,
+          "red_flag": 3,
+          "no_response": 0
+        }
       }
     }
   },

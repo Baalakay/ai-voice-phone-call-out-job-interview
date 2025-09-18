@@ -14,16 +14,17 @@ The system extends the SST AWS Project Template to create a specialized AI-power
 - **DynamoDB**: Worker profiles, assessment data, skill templates
 - **Lambda Functions**: Python 3.12 runtime with specialized handlers
 
-### AI Voice Calling Layer - SIMPLIFIED FOR POC:
-- **Twilio Voice API**: Outbound calls + built-in STT via <Gather> verb
-- **Pre-recorded Audio Files**: Static questions stored in S3 (no TTS needed)
-- **Simple Call Flow**: Linear Q&A sequence with no complex state management
+### AI Voice Calling Layer - PRODUCTION IMPLEMENTATION:
+- **Twilio Voice API**: Advanced outbound calls with sophisticated TwiML flow control
+- **ElevenLabs Audio Files**: Professional "Rachel" voice for all 31 assessment questions
+- **Complex Call Flow**: Multi-question sequences with state management, timeout handling, repeat functionality
+- **Interactive Controls**: Star (*) key for question repeat, pound (#) key for answer submission
 
-### LLM Assessment Layer - SIMPLIFIED FOR POC:
-- **Amazon Bedrock**: Claude/GPT integration for transcript analysis (already exists)
-- **Direct API Calls**: Simple prompt/response pattern, no complex workflow management
-- **Basic Scoring**: Simple qualification determination (approved/rejected/needs_review)
-- **S3 Result Storage**: JSON files instead of complex database schemas
+### LLM Assessment Layer - PRODUCTION IMPLEMENTATION:
+- **Amazon Bedrock**: Integrated transcript analysis with assessment scoring (operational)
+- **Advanced Webhook Processing**: Complex state management across multiple Lambda invocations
+- **Sophisticated Scoring**: Multi-criteria evaluation with role-specific assessment templates
+- **S3 Result Storage**: Comprehensive JSON-based storage with error recovery and state persistence
 
 ## Design Patterns in Use
 
@@ -33,34 +34,35 @@ The system extends the SST AWS Project Template to create a specialized AI-power
 - **Stage-Aware Deployment**: dev/staging/production with environment-specific settings
 - **Never hardcode**: All project-specific values flow through configuration
 
-### Simplified Event-Driven Architecture (POC):
-- **Direct Lambda Triggers**: Simple function calls, no complex event handling
-- **Twilio Webhooks**: Single callback URL for call completion status
-- **S3 File Storage**: JSON results and audio files, no event triggers needed
-- **No Persistent State**: Stateless functions, call data stored in S3
+### Production Event-Driven Architecture:
+- **Advanced Lambda Triggers**: Sophisticated webhook handling with state management
+- **Twilio Webhooks**: Multiple callback URLs for different call states and user interactions
+- **S3 File Storage**: Professional audio assets, assessment results, web UI hosting
+- **Persistent State Management**: Stateful functions with S3-based session persistence
 
-### Simplified Handler Pattern (POC):
-- **Single Handler**: `assessment_handler.py` for all assessment logic
-- **Minimal Services**: Direct Twilio API calls, direct Bedrock API calls
-- **Basic Data Structures**: Python dicts and JSON files, no complex models
-- **No Utility Layer**: Inline logic sufficient for POC scope
+### Production Handler Pattern:
+- **Comprehensive Handler**: `webhook_simple.py` with complete assessment logic and flow control
+- **Integrated Services**: Advanced Twilio API integration, ElevenLabs TTS, AWS services
+- **Complex Data Structures**: Sophisticated state management, assessment templates, error handling
+- **Utility Integration**: Full-featured logic with proper error recovery and user guidance
 
 ## Data Flow
 
-### Simplified Assessment Workflow (POC):
-1. **Initiation**: Lambda function triggered with worker phone number and skill type
-2. **Call**: Twilio immediately places outbound call to worker
-3. **Static Q&A**: Pre-recorded questions played, worker responses collected via STT
-4. **Analysis**: Combined transcript sent to Bedrock for skills evaluation
-5. **Storage**: Assessment results saved as JSON file to S3
-6. **Complete**: Simple success/failure response, no complex integration
+### Production Assessment Workflow:
+1. **Web Initiation**: User selects role and enters phone number via S3-hosted web interface
+2. **Lambda Call**: Advanced Twilio integration places outbound call with proper error handling
+3. **Interactive Q&A**: Professional ElevenLabs audio with star (*) repeat and pound (#) submission controls
+4. **State Management**: Sophisticated session persistence across multiple webhook calls
+5. **Analysis**: Real-time transcript processing with role-specific evaluation criteria
+6. **Storage**: Comprehensive assessment results with proper error recovery
+7. **Completion**: Graceful call termination with user feedback and result availability
 
-### Simplified Call Session Flow (POC):
-1. **Direct Call**: Lambda triggers Twilio call with pre-built TwiML flow
-2. **Audio Playback**: S3-hosted audio files played via Twilio <Play> verb
-3. **Speech Collection**: <Gather speech="true"> collects and transcribes responses
-4. **No State Management**: Simple linear flow, no persistent session state
-5. **Immediate Processing**: All responses collected, sent to Bedrock at call end
+### Production Call Session Flow:
+1. **Advanced Call Setup**: Lambda triggers Twilio with complex TwiML flow and webhook routing
+2. **Professional Audio**: ElevenLabs "Rachel" voice files served from S3 with proper permissions
+3. **Interactive Collection**: Advanced <Record> and <Gather> with timeout handling and user controls
+4. **Persistent State**: Robust session management across multiple Lambda invocations
+5. **Real-time Processing**: Continuous state updates with proper error handling and recovery
 
 ## Key Technical Decisions
 

@@ -568,15 +568,32 @@ def generate_completion_twiml(assessment_id, skill_type):
     <Hangup/>
 </Response>'''
         
-        # Mark assessment as completed
+        # Mark assessment as completed and trigger analysis
         try:
             state = get_assessment_state(assessment_id, skill_type)
             state['status'] = 'completed'
             state['completed_at'] = datetime.utcnow().isoformat()
             save_assessment_state(state)
             logger.info(f"Assessment {assessment_id} marked as completed")
+            
+            # Trigger async assessment analysis
+            import boto3
+            lambda_client = boto3.client('lambda')
+            
+            lambda_client.invoke(
+                FunctionName=f"{os.environ.get('PROJECT_NAME', 'gravywork-processor')}-dev-assessment-processor",
+                InvocationType='Event',  # Async invocation
+                Payload=json.dumps({
+                    'assessment_id': assessment_id,
+                    'skill_type': skill_type
+                })
+            )
+            
+            logger.info(f"Triggered assessment analysis for {assessment_id} ({skill_type})")
+            
         except Exception as e:
-            logger.error(f"Error marking assessment complete: {str(e)}")
+            logger.error(f"Failed to complete assessment processing: {str(e)}")
+            # Continue with TwiML response even if analysis trigger fails
         
         return {
             'statusCode': 200,

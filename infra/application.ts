@@ -22,6 +22,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
       QUEUE_URL: infrastructure.processingQueue.url,
       OUTPUT_BUCKET: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
       PROJECT_NAME: projectConfig.projectName,
+      S3_BUCKET_NAME: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
       
       // Twilio configuration for AI Skills Assessment - from centralized config
       TWILIO_ACCOUNT_SID: twilioConfig.accountSid,
@@ -42,6 +43,50 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
         actions: [
           "bedrock:InvokeModel",
           "bedrock:InvokeModelWithResponseStream",
+          "transcribe:StartTranscriptionJob",
+          "transcribe:GetTranscriptionJob",
+          "transcribe:ListTranscriptionJobs",
+          "lambda:InvokeFunction",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream", 
+          "logs:PutLogEvents"
+        ],
+        resources: ["*"],
+      },
+    ],
+  });
+
+  // Assessment Processing Function - handles post-call LLM analysis
+  const assessmentProcessor = new sst.aws.Function("AssessmentProcessor", {
+    name: `${projectConfig.projectName}-${stage}-assessment-processor`,
+    handler: "functions/src/functions/assessment_processor_simple.lambda_handler",
+    runtime: "python3.12",
+    timeout: "15 minutes", // Longer timeout for transcription + LLM processing
+    memory: "1024 MB",
+    architecture: projectConfig.resources.lambda.architecture,
+    layers: [],
+    environment: {
+      ENVIRONMENT: stage,
+      OUTPUT_BUCKET: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
+      S3_BUCKET_NAME: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
+      PROJECT_NAME: projectConfig.projectName,
+      
+      // Twilio credentials for downloading recordings
+      TWILIO_ACCOUNT_SID: twilioConfig.accountSid,
+      TWILIO_AUTH_TOKEN: twilioConfig.authToken,
+    },
+    permissions: [
+      {
+        actions: ["s3:*"],
+        resources: ["*"],
+      },
+      {
+        actions: [
+          "bedrock:InvokeModel",
+          "bedrock:InvokeModelWithResponseStream",
+          "transcribe:StartTranscriptionJob",
+          "transcribe:GetTranscriptionJob",
+          "transcribe:ListTranscriptionJobs",
           "logs:CreateLogGroup",
           "logs:CreateLogStream", 
           "logs:PutLogEvents"
@@ -86,6 +131,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
 
   return {
     processingFunction,
+    assessmentProcessor,
     assessmentApi,
   };
 }

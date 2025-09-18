@@ -18,22 +18,28 @@
 - **FastAPI**: API framework for HTTP endpoints
 - **Celery + Redis**: Task queue management for async processing
 
-### AI & Voice Services - SIMPLIFIED FOR POC:
-- **Twilio Voice API**: Outbound calls + built-in STT via <Gather> verb
-- **AWS Bedrock**: LLM analysis (already exists in template)
+### AI & Voice Services - PRODUCTION IMPLEMENTATION:
+- **Twilio Voice API**: Outbound calls with advanced TwiML flow control and built-in STT
+- **ElevenLabs TTS**: Professional "Rachel" voice for all 31 audio files
+- **AWS Lambda**: Sophisticated webhook handling with state management
+- **S3 Audio Storage**: Professional audio assets with proper permissions and delivery
 
-### ELIMINATED SERVICES (POC Simplifications):
-- ❌ **Amazon Transcribe**: Replaced by Twilio's built-in STT
-- ❌ **Amazon Polly**: Using pre-recorded audio files instead
-- ❌ **LangChain**: Direct Bedrock API calls sufficient
+### IMPLEMENTED SERVICES (Production Features):
+- ✅ **Twilio Advanced Features**: Star key repeat, pound key submission, timeout handling
+- ✅ **ElevenLabs Integration**: High-quality voice synthesis for consistent user experience  
+- ✅ **State Management**: Robust session persistence across Lambda function calls
+- ✅ **Error Handling**: Comprehensive Twilio account management and user guidance
 
-### Data Storage - SIMPLIFIED FOR POC:
-- **S3**: Pre-recorded questions, call recordings, transcripts, assessment results (JSON files)
-- **SQS**: Async message processing (already in template, optional for POC)
+### Data Storage - PRODUCTION IMPLEMENTATION:
+- **S3**: Professional audio files (31 files), call recordings, assessment results, static website hosting
+- **Lambda State Management**: Session persistence using S3-based state storage
+- **Web UI Storage**: HTML/CSS/JavaScript files served from S3 with static website hosting
 
-### ELIMINATED STORAGE (POC Simplifications):
-- ❌ **DynamoDB**: Replaced with S3 JSON files for simplicity
-- ❌ **ElastiCache Redis**: No caching needed for POC
+### OPERATIONAL STORAGE (Production Features):
+- ✅ **Audio Asset Management**: All 31 ElevenLabs audio files properly organized and served
+- ✅ **State Persistence**: Robust session management across multiple webhook calls
+- ✅ **Web Interface**: Complete frontend hosted on S3 with phone number persistence
+- ✅ **Assessment Results**: JSON-based storage with proper error handling and recovery
 
 ### Development Environment:
 - **VS Code DevContainer**: Consistent development environment
@@ -92,19 +98,17 @@ sst deploy --stage production  # Protected stage
 
 ## Dependencies
 
-### Runtime Dependencies (`requirements.txt`) - SIMPLIFIED FOR POC:
-- **boto3>=1.34.0**: AWS SDK (already in template)
-- **twilio>=8.0.0**: Voice calling + built-in STT via <Gather> verb
+### Runtime Dependencies (`requirements.txt`) - PRODUCTION IMPLEMENTATION:
+- **boto3>=1.34.0**: AWS SDK for S3, Lambda, and service integration
+- **twilio>=8.0.0**: Advanced voice calling with TwiML flow control and webhook handling
+- **elevenlabs>=1.0.0**: Professional text-to-speech integration for audio generation
+- **requests>=2.31.0**: HTTP client for API integrations and webhook processing
 
-### ELIMINATED DEPENDENCIES (POC Simplifications):
-- ❌ **amazon-transcribe-streaming**: Replaced by Twilio's built-in STT
-- ❌ **langchain>=0.1.0**: Direct Bedrock calls sufficient
-- ❌ **pydantic>=2.0.0**: Basic dict validation for POC
-- ❌ **phonenumbers>=8.13.0**: Basic string validation sufficient
-- ❌ **textblob>=0.17.1**: English-only for Phase 1
-- ❌ **fastapi>=0.100.0**: Simple Lambda handlers sufficient
-- ❌ **celery>=5.3.0**: Direct Lambda invocation, no task queue
-- ❌ **redis>=5.0.0**: S3-based storage, no caching needed
+### PRODUCTION DEPENDENCIES (Operational Features):
+- ✅ **Advanced Twilio Integration**: Complex TwiML generation, state management, error handling
+- ✅ **ElevenLabs TTS**: High-quality voice synthesis with "Rachel" voice consistency
+- ✅ **AWS Service Integration**: S3 storage, Lambda execution, proper permissions management
+- ✅ **Web Interface Support**: Static website hosting, localStorage integration, responsive design
 
 ### Development Dependencies (`requirements-dev.txt`):
 - **pytest**: Testing framework
