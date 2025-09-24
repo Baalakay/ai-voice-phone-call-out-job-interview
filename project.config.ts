@@ -27,8 +27,8 @@ export const projectConfig = {
   resources: {
     // 🪣 S3 Bucket configuration
     bucket: {
-      useExisting: false, // true = reference existing bucket, false = create new
-      existingName: "", // Only required if useExisting = true
+      useExisting: true, // true = reference existing bucket, false = create new
+      existingName: "innovativesol-gravywork-assets-dev", // Only required if useExisting = true
       // 📝 New bucket naming: {orgPrefix}-{projectName}-bucket-{stage}
     },
     

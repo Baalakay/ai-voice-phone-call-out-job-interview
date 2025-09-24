@@ -59,7 +59,7 @@ def load_assessment_templates():
         "bartender": {
             "questions_sequence": [
                 "intro", "experience_1", "experience_2", "experience_3", 
-                "knowledge_cosmopolitan_glass", "knowledge_old_fashioned_glass", "knowledge_margarita", "knowledge_old_fashioned", 
+                "knowledge_glassware_1", "knowledge_glassware_2", "knowledge_margarita", "knowledge_old_fashioned", 
                 "knowledge_tools", "knowledge_service", "goodbye"
             ]
         },
@@ -581,7 +581,7 @@ def generate_completion_twiml(assessment_id, skill_type):
             lambda_client = boto3.client('lambda')
             
             lambda_client.invoke(
-                FunctionName=f"{os.environ.get('PROJECT_NAME', 'gravywork-processor')}-dev-assessment-processor",
+                FunctionName="gravywork-dev-assessment-processor",
                 InvocationType='Event',  # Async invocation
                 Payload=json.dumps({
                     'assessment_id': assessment_id,

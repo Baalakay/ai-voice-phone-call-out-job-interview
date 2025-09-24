@@ -18,7 +18,4 @@ class Resource:
     class ProcessingQueue:
         type: str
         url: str
-    class ProjectBucket:
-        name: str
-        type: str
 

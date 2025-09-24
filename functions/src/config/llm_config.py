@@ -48,6 +48,22 @@ DEFAULT_CONFIGS = {
         max_tokens=None,
         top_p=0.9,
     ),
+    
+    "nova-micro": LLMConfig(
+        model_id="amazon.nova-micro-v1:0",
+        temperature=0.1,
+        region="us-east-1",
+        max_tokens=4000,
+        top_p=0.9,
+    ),
+    
+    "nova-pro": LLMConfig(
+        model_id="amazon.nova-pro-v1:0",
+        temperature=0.1,
+        region="us-east-1",
+        max_tokens=4000,
+        top_p=0.9,
+    ),
 }
 
 

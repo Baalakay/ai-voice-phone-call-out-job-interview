@@ -1,7 +1,7 @@
 # Progress Tracker: Gravy Work AI Skills Assessment Platform
-*Version: 1.0*
-*Created: $(date)*
-*Last Updated: $(date)*
+*Version: 2.1*
+*Created: September 2025*
+*Last Updated: September 24, 2025*
 
 ## Project Status
 Overall Completion: 100% ✅
@@ -13,9 +13,11 @@ Overall Completion: 100% ✅
 ## What Works (Fully Implemented!)
 
 ### ✅ Complete AI Skills Assessment Platform: 100% OPERATIONAL
-- **ElevenLabs Voice Integration**: Professional "Rachel" voice for all 31 audio files
+- **ElevenLabs Voice Integration**: Professional "Rachel" voice for all 32 audio files (updated Sept 2025)
 - **Multi-Role Assessment**: Bartender, Banquet Server, Host with 10+ questions each
 - **Advanced Call Flow**: Star (*) repeat, pound (#) submit, 5-second timeout handling
+- **LLM Assessment Engine**: Claude Sonnet 3 with detailed 0-10 scoring system and category breakdown
+- **Assessment Results Dashboard**: Comprehensive UI with original questions, candidate responses, and AI analysis
 - **Assessment Handler**: Complete webhook routing with state management and recording
 - **S3-Hosted Web UI**: Role selection, phone persistence, call initiation interface
 - **Comprehensive Error Handling**: Twilio trial account guidance and verification instructions
@@ -28,11 +30,22 @@ Overall Completion: 100% ✅
 - **SST Deployment**: Multi-stage production deployment with webhook URL management
 
 ### ✅ Assessment Components: 100% IMPLEMENTED
-- **31 Professional Audio Files**: All questions recorded in Rachel's voice and deployed
+- **32 Professional Audio Files**: All questions recorded in Rachel's voice and deployed (updated Sept 2025)
 - **3 Role Types**: Complete question sequences with split bartender glassware questions
 - **Real Evaluation Criteria**: Implemented GravyWork standards with proper scoring
+- **LLM Analysis Engine**: Claude Sonnet 3 with detailed scoring, category breakdown, and PASS/REVIEW/FAIL recommendations
+- **Assessment Results UI**: Professional dashboard with original questions, responses, and AI analysis
 - **State Management**: Robust session handling across Lambda function calls
 - **Testing Validation**: End-to-end phone call testing completed successfully
+
+### ✅ Recent Critical Fixes (September 2025): 100% RESOLVED
+- **Host Baseline Category**: Fixed empty baseline scoring category, now includes phone etiquette and reservation handling
+- **LLM Response Flipping**: Resolved critical bug where Claude was swapping analyses between questions
+- **Question Title Display**: Fixed truncated Host question titles in UI (POS/Reservation System, Table Assignment, etc.)
+- **Original Question Display**: Added verbatim questions asked to candidates in assessment details
+- **Audio File Content-Type**: Fixed S3 audio files to use audio/mpeg for proper Twilio playback
+- **Global Assessment Index**: Implemented centralized assessment discovery for dashboard
+- **Question Mapping**: Comprehensive question mappings for all roles with proper fallback handling
 
 ## Operational Status (System Live!)
 
@@ -117,6 +130,33 @@ Overall Completion: 100% ✅
 - **Components**: Call scheduling system, retry logic, notification integration
 - **Dependencies**: Core assessment working reliably
 - **Estimate**: 2-3 days implementation
+
+## Current System Architecture (September 2025)
+
+### ✅ Core Components:
+- **Twilio Voice API**: Outbound calling with advanced call flow controls
+- **AWS Lambda Functions**: 
+  - `webhook_simple.py`: Handles call flow, question progression, recording management
+  - `assessment_processor_simple.py`: Post-call LLM analysis with AWS Transcribe and Claude Sonnet 3
+- **AWS S3**: Audio file storage, web UI hosting, assessment results storage
+- **AWS Transcribe**: Speech-to-text conversion for candidate responses
+- **Amazon Bedrock (Claude Sonnet 3)**: LLM analysis with detailed scoring and reasoning
+- **ElevenLabs API**: Professional voice generation (Rachel voice)
+
+### ✅ Assessment Flow:
+1. **Web UI**: User selects role and initiates call
+2. **Twilio Call**: Outbound call with professional intro and instructions
+3. **Question Flow**: Sequential questions with star (*) repeat and pound (#) submit
+4. **Recording**: Each response recorded and stored in S3
+5. **Transcription**: AWS Transcribe converts speech to text
+6. **LLM Analysis**: Claude Sonnet 3 evaluates responses with 0-10 scoring
+7. **Results Dashboard**: Comprehensive UI with original questions, responses, and analysis
+
+### ✅ Scoring System:
+- **Three Categories**: Baseline Criteria, Experience & Responsibilities, Knowledge Checks
+- **0-10 Point Scale**: Ideal (10), Acceptable (7), Red Flag (3), No Response (0)
+- **PASS/REVIEW/FAIL Logic**: Based on 70% threshold across categories
+- **Detailed Reasoning**: AI provides specific explanations for each score
 
 ## Known Issues
 

@@ -21,10 +21,6 @@ declare module "sst" {
       "type": "sst.aws.Queue"
       "url": string
     }
-    "ProjectBucket": {
-      "name": string
-      "type": "sst.aws.Bucket"
-    }
   }
 }
 /// <reference path="sst-env.d.ts" />

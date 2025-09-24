@@ -6,6 +6,9 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
   const stage = $app.stage;
   const twilioConfig = getTwilioConfig(stage);
   
+  // HTTP API for Twilio webhooks (AI Skills Assessment) - define first for URL reference
+  const assessmentApi = new sst.aws.ApiGatewayV2("AssessmentWebhookApi");
+  
   // Main Processing Function - configurable for any project!
   const processingFunction = new sst.aws.Function("ProcessingFunction", {
     name: generateFunctionName(stage),
@@ -28,7 +31,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
       TWILIO_ACCOUNT_SID: twilioConfig.accountSid,
       TWILIO_AUTH_TOKEN: twilioConfig.authToken,
       TWILIO_PHONE_NUMBER: twilioConfig.phoneNumber,
-      TWILIO_WEBHOOK_URL: twilioConfig.webhookUrl,
+      TWILIO_WEBHOOK_URL: assessmentApi.url,
     },
     permissions: [
       {
@@ -74,6 +77,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
       // Twilio credentials for downloading recordings
       TWILIO_ACCOUNT_SID: twilioConfig.accountSid,
       TWILIO_AUTH_TOKEN: twilioConfig.authToken,
+      TWILIO_WEBHOOK_URL: assessmentApi.url,
     },
     permissions: [
       {
@@ -84,6 +88,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
         actions: [
           "bedrock:InvokeModel",
           "bedrock:InvokeModelWithResponseStream",
+          "bedrock:Converse",
           "transcribe:StartTranscriptionJob",
           "transcribe:GetTranscriptionJob",
           "transcribe:ListTranscriptionJobs",
@@ -95,6 +100,26 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
       },
     ],
   });
+
+  // LLM Comparison processor for testing multiple models (temporarily disabled for bucket fix)
+  // const llmComparisonProcessor = new sst.aws.Function("LLMComparisonProcessor", {
+  //   handler: "functions/src/functions/llm_comparison_processor.lambda_handler",
+  //   timeout: "15 minutes",
+  //   memory: "2048 MB",
+  //   environment: {
+  //     OUTPUT_BUCKET: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
+  //   },
+  //   permissions: [
+  //     {
+  //       actions: ["s3:GetObject", "s3:PutObject", "s3:DeleteObject", "s3:ListBucket"],
+  //       resources: [infrastructure.bucket.arn, $interpolate`${infrastructure.bucket.arn}/*`],
+  //     },
+  //     {
+  //       actions: ["bedrock:InvokeModel", "bedrock:Converse"],
+  //       resources: ["*"],
+  //     },
+  //   ],
+  // });
 
   // S3 Event notification to trigger Lambda on file upload
   new aws.s3.BucketNotification("ProjectBucketNotifications", {
@@ -117,9 +142,6 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
     sourceArn: infrastructure.bucket.arn,
   });
 
-  // HTTP API for Twilio webhooks (AI Skills Assessment)
-  const assessmentApi = new sst.aws.ApiGatewayV2("AssessmentWebhookApi");
-  
   // Webhook endpoints for AI Skills Assessment
   assessmentApi.route("POST /webhook", processingFunction.arn);
   assessmentApi.route("POST /webhook/recording", processingFunction.arn);
@@ -132,6 +154,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
   return {
     processingFunction,
     assessmentProcessor,
+    // llmComparisonProcessor,  // Temporarily disabled for bucket fix
     assessmentApi,
   };
 }
