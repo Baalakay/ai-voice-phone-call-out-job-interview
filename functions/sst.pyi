@@ -12,6 +12,9 @@ class Resource:
     class AssessmentWebhookApi:
         type: str
         url: str
+    class LLMComparisonProcessor:
+        name: str
+        type: str
     class ProcessingFunction:
         name: str
         type: str

@@ -13,6 +13,10 @@ declare module "sst" {
       "type": "sst.aws.ApiGatewayV2"
       "url": string
     }
+    "LLMComparisonProcessor": {
+      "name": string
+      "type": "sst.aws.Function"
+    }
     "ProcessingFunction": {
       "name": string
       "type": "sst.aws.Function"

@@ -195,10 +195,23 @@ class LLMComparisonProcessor:
             # Extract usage metrics
             usage = response.get('usage', {})
             
-            # Try to parse as JSON
+            # Try to parse as JSON - handle both raw JSON and markdown-wrapped JSON
             try:
+                # First try direct JSON parsing
                 analysis_json = json.loads(analysis_text)
-                
+            except json.JSONDecodeError:
+                # Try extracting JSON from markdown code blocks
+                import re
+                json_match = re.search(r'```json\n(.*?)\n```', analysis_text, re.DOTALL)
+                if json_match:
+                    try:
+                        analysis_json = json.loads(json_match.group(1))
+                    except json.JSONDecodeError:
+                        analysis_json = None
+                else:
+                    analysis_json = None
+            
+            if analysis_json:
                 # Format the analysis using existing logic
                 from .assessment_processor_simple import format_analysis_for_humans
                 formatted_analysis = format_analysis_for_humans(analysis_json, llm_name.split('-')[0])
@@ -209,8 +222,7 @@ class LLMComparisonProcessor:
                     'usage': usage,
                     'raw_response': analysis_text
                 }
-                
-            except json.JSONDecodeError:
+            else:
                 # Return structured response if JSON parsing fails
                 return {
                     'success': True,

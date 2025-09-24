@@ -700,10 +700,23 @@ def analyze_with_llm_simple(bedrock_client, transcripts: Dict[str, str], skill_t
         analysis_text = response['output']['message']['content'][0]['text']
         usage = response.get('usage', {})
         
-        # Try to parse as JSON
+        # Try to parse as JSON - handle both raw JSON and markdown-wrapped JSON
         try:
+            # First try direct JSON parsing
             analysis_json = json.loads(analysis_text)
-            
+        except json.JSONDecodeError:
+            # Try extracting JSON from markdown code blocks
+            import re
+            json_match = re.search(r'```json\n(.*?)\n```', analysis_text, re.DOTALL)
+            if json_match:
+                try:
+                    analysis_json = json.loads(json_match.group(1))
+                except json.JSONDecodeError:
+                    analysis_json = None
+            else:
+                analysis_json = None
+        
+        if analysis_json:
             # Format the analysis in a human-readable structure
             formatted_analysis = format_analysis_for_humans(analysis_json, skill_type)
             
@@ -712,7 +725,7 @@ def analyze_with_llm_simple(bedrock_client, transcripts: Dict[str, str], skill_t
                 'analysis': formatted_analysis,
                 'usage': usage
             }
-        except json.JSONDecodeError:
+        else:
             # Return structured response if JSON parsing fails
             return {
                 'success': True,
@@ -830,7 +843,7 @@ Experience Scoring Guidelines:
 SCORING INSTRUCTIONS:
 Provide detailed 0-10 scoring for each question and category averages.
 
-Respond with JSON in this exact structure:
+CRITICAL: Respond with ONLY the JSON object below. Do not wrap in markdown code blocks or add any other text. Return the raw JSON structure only:
 
 {
   "question_scores": {
@@ -889,6 +902,8 @@ CRITICAL: MATCH RESPONSES TO CORRECT QUESTION_IDs
 YOU MUST PROVIDE SCORES FOR ALL QUESTIONS INCLUDING: {', '.join(transcripts.keys())}
 
 Score each question 0-10 based on criteria, calculate category averages, then determine final recommendation.
+
+IMPORTANT: Return ONLY the JSON object. No markdown formatting, no code blocks, no additional text.
 """
     
     return prompt

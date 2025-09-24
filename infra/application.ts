@@ -101,25 +101,37 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
     ],
   });
 
-  // LLM Comparison processor for testing multiple models (temporarily disabled for bucket fix)
-  // const llmComparisonProcessor = new sst.aws.Function("LLMComparisonProcessor", {
-  //   handler: "functions/src/functions/llm_comparison_processor.lambda_handler",
-  //   timeout: "15 minutes",
-  //   memory: "2048 MB",
-  //   environment: {
-  //     OUTPUT_BUCKET: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
-  //   },
-  //   permissions: [
-  //     {
-  //       actions: ["s3:GetObject", "s3:PutObject", "s3:DeleteObject", "s3:ListBucket"],
-  //       resources: [infrastructure.bucket.arn, $interpolate`${infrastructure.bucket.arn}/*`],
-  //     },
-  //     {
-  //       actions: ["bedrock:InvokeModel", "bedrock:Converse"],
-  //       resources: ["*"],
-  //     },
-  //   ],
-  // });
+  // LLM Comparison processor for testing multiple models
+  const llmComparisonProcessor = new sst.aws.Function("LLMComparisonProcessor", {
+    name: `${projectConfig.projectName}-${stage}-llm-comparison-processor`,
+    handler: "functions/src/functions/llm_comparison_processor.lambda_handler",
+    runtime: "python3.12",
+    timeout: "15 minutes",
+    memory: "2048 MB",
+    architecture: projectConfig.resources.lambda.architecture,
+    environment: {
+      ENVIRONMENT: stage,
+      OUTPUT_BUCKET: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
+      S3_BUCKET_NAME: (infrastructure.bucket as any).bucket || (infrastructure.bucket as any).id,
+      PROJECT_NAME: projectConfig.projectName,
+    },
+    permissions: [
+      {
+        actions: ["s3:GetObject", "s3:PutObject", "s3:DeleteObject", "s3:ListBucket"],
+        resources: ["*"],
+      },
+      {
+        actions: [
+          "bedrock:InvokeModel",
+          "bedrock:Converse",
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream", 
+          "logs:PutLogEvents"
+        ],
+        resources: ["*"],
+      },
+    ],
+  });
 
   // S3 Event notification to trigger Lambda on file upload
   new aws.s3.BucketNotification("ProjectBucketNotifications", {
@@ -154,7 +166,7 @@ export function ApplicationStack(infrastructure: ReturnType<typeof import("./inf
   return {
     processingFunction,
     assessmentProcessor,
-    // llmComparisonProcessor,  // Temporarily disabled for bucket fix
+    llmComparisonProcessor,
     assessmentApi,
   };
 }
