@@ -24,20 +24,23 @@ class TwilioConfig:
 
 
 # Default configurations for different environments
+# NOTE: This file is LEGACY and not used by the current system.
+# The active system uses environment variables directly in webhook_simple.py and assessment_processor_simple.py
+# Actual Twilio config is managed in project.config.ts
 DEFAULT_CONFIGS = {
     "development": TwilioConfig(
-        account_sid="AC4e658dd5cf5c6e36514e5bae7f4c1bf7",  # Your Live Account SID
-        auth_token="db19869a6764956183410a5169a41ab0",  # Your Auth Token  
-        from_phone_number="+14722368895",  # Your Twilio number: (472) 236-8895
+        account_sid="PLACEHOLDER_ACCOUNT_SID",  # Set via TWILIO_ACCOUNT_SID env var
+        auth_token="PLACEHOLDER_AUTH_TOKEN",    # Set via TWILIO_AUTH_TOKEN env var
+        from_phone_number="+14722368895",       # Your Twilio number: (472) 236-8895
         speech_timeout="4",
     ),
     
     "production": TwilioConfig(
-        account_sid="AC4e658dd5cf5c6e36514e5bae7f4c1bf7",  # Your Live Account SID
-        auth_token="db19869a6764956183410a5169a41ab0",  # Your Auth Token 
-        api_key_sid="SKe44f958c6a509ba4bc6575e0977267a3",  # Your API Key (more secure)
-        api_key_secret="425sxqNn0UtBXEKLk62rm6iF72wDoRon",  # Your API Secret
-        from_phone_number="+14722368895",  # Your Twilio number: (472) 236-8895
+        account_sid="PLACEHOLDER_ACCOUNT_SID",  # Set via TWILIO_ACCOUNT_SID env var
+        auth_token="PLACEHOLDER_AUTH_TOKEN",    # Set via TWILIO_AUTH_TOKEN env var
+        api_key_sid="PLACEHOLDER_API_KEY_SID",  # Set via TWILIO_API_KEY_SID env var (if needed)
+        api_key_secret="PLACEHOLDER_API_SECRET", # Set via TWILIO_API_KEY_SECRET env var (if needed)
+        from_phone_number="+14722368895",       # Your Twilio number: (472) 236-8895
         speech_timeout="4",
     ),
 }
@@ -72,7 +75,7 @@ def get_twilio_config(environment: str = "development") -> TwilioConfig:
         auth_token=os.environ.get("TWILIO_AUTH_TOKEN", base_config.auth_token),
         api_key_sid=os.environ.get("TWILIO_API_KEY_SID", base_config.api_key_sid),
         api_key_secret=os.environ.get("TWILIO_API_KEY_SECRET", base_config.api_key_secret),
-        voice_webhook_url=os.environ.get("TWILIO_WEBHOOK_URL", "https://9pblelc0j5.execute-api.us-east-1.amazonaws.com"),
+        voice_webhook_url=os.environ.get("TWILIO_WEBHOOK_URL", ""),
         from_phone_number=os.environ.get("TWILIO_FROM_NUMBER", base_config.from_phone_number),
         speech_timeout=os.environ.get("TWILIO_SPEECH_TIMEOUT", base_config.speech_timeout),
         speech_model=os.environ.get("TWILIO_SPEECH_MODEL", base_config.speech_model),
