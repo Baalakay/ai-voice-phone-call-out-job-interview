@@ -52,10 +52,10 @@ export const projectConfig = {
     orgPrefix: "innovativesol", // Organization prefix for all resource names
   },
 
-  // 📱 Twilio Configuration (MODIFY THESE)
+  // 📱 Twilio Configuration (Set via Environment Variables)
   twilio: {
-    accountSid: "AC4e658dd5cf5c6e36514e5bae7f4c1bf7", // Live Account SID
-    authToken: "db19869a6764956183410a5169a41ab0",   // Auth Token
+    accountSid: process.env.TWILIO_ACCOUNT_SID || "PLACEHOLDER_ACCOUNT_SID", // Set TWILIO_ACCOUNT_SID env var
+    authToken: process.env.TWILIO_AUTH_TOKEN || "PLACEHOLDER_AUTH_TOKEN",     // Set TWILIO_AUTH_TOKEN env var
     phoneNumber: "+14722368895",                      // Your Twilio number: (472) 236-8895
     webhookUrls: {
       dev: "https://eih1khont2.execute-api.us-east-1.amazonaws.com",
