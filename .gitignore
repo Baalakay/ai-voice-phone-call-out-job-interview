@@ -127,3 +127,4 @@ out_analyze.json
 
 # sst
 .sst
+setup-env.sh
