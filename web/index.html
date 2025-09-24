@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GravyWork Skills Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>🍽️ GravyWork</h1>
+                <p class="tagline">Skills Assessment Platform</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="assessment-card">
+                    <div class="card-header">
+                        <h2>📞 AI Voice Assessment</h2>
+                        <p class="description">
+                            Experience our innovative AI-powered phone assessment. 
+                            Select your role and provide your phone number to begin a professional 5-minute skills evaluation.
+                        </p>
+                    </div>
+
+                <form id="assessmentForm" class="assessment-form">
+                    <div class="form-group">
+                        <label for="phoneNumber" class="form-label">📱 Phone Number</label>
+                        <input 
+                            type="tel" 
+                            id="phoneNumber" 
+                            name="phoneNumber" 
+                            class="form-input" 
+                            placeholder="(234) 555-6789"
+                            required
+                        >
+                        <small class="form-help">We'll call you immediately to begin the assessment</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skillType" class="form-label">🎯 Role Selection</label>
+                        <div class="role-grid">
+                            <div class="role-card" data-role="bartender">
+                                <div class="role-icon">🍸</div>
+                                <h3>Bartender</h3>
+                                <p>Cocktail preparation, customer service, and bar management skills</p>
+                                <div class="role-duration">~5 minutes</div>
+                            </div>
+                            <div class="role-card" data-role="banquet_server">
+                                <div class="role-icon">🍽️</div>
+                                <h3>Banquet Server</h3>
+                                <p>Event service, team coordination, and guest experience</p>
+                                <div class="role-duration">~5 minutes</div>
+                            </div>
+                            <div class="role-card" data-role="host">
+                                <div class="role-icon">👋</div>
+                                <h3>Host</h3>
+                                <p>Guest relations, reservation management, and hospitality</p>
+                                <div class="role-duration">~5 minutes</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="skillType" name="skillType" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" id="initiateBtn" class="btn-primary" disabled>
+                            <span class="btn-icon">📞</span>
+                            <span class="btn-text">Start Assessment Call</span>
+                        </button>
+                    </div>
+                </form>
+
+                    <div id="statusMessage" class="status-message hidden"></div>
+                    
+                    <div class="analysis-link-section">
+                        <div class="divider">
+                            <span>After Assessment</span>
+                        </div>
+                        <a href="analysis.html" class="analysis-link">
+                            <div class="analysis-link-content">
+                                <div class="analysis-icon">📊</div>
+                                <div class="analysis-text">
+                                    <h3>View Analysis Results</h3>
+                                    <p>Access detailed scoring and AI-powered analysis of completed assessments</p>
+                                </div>
+                                <div class="analysis-arrow">→</div>
+                            </div>
+                        </a>
+                    </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>🤖 Powered by AI Voice Technology</p>
+                <p class="footer-note">Professional assessment powered by ElevenLabs & AWS</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+
+🎯 TWILIO WEBHOOK CONFIGURATION GUIDE
+====================================
+
+📞 Phone Number: (472) 236-8895
+🔗 API Gateway URL: https://eih1khont2.execute-api.us-east-1.amazonaws.com
+
+WEBHOOK CONFIGURATION STEPS:
+1. Login to your Twilio Console (https://console.twilio.com)
+2. Go to Phone Numbers → Manage → Active numbers
+3. Click on (472) 236-8895
+4. In "Voice Configuration" section:
+   - Webhook: https://eih1khont2.execute-api.us-east-1.amazonaws.com/webhook
+   - HTTP Method: POST
+5. In "Status Callback" section:
+   - URL: https://eih1khont2.execute-api.us-east-1.amazonaws.com/webhook/status
+   - Method: POST
+6. Click "Save Configuration"
+
+WEBHOOK ENDPOINTS:
+- /webhook           → Initial call handler
+- /webhook/status    → Call status updates
+- /question/{id}     → Question flow
+- /complete/{id}     → Assessment completion
+- /initiate          → Start new assessment
+
+TESTING:
+After configuration, you can:
+1. Call (472) 236-8895 to test the assessment flow
+2. Use /initiate endpoint to trigger outbound calls
+3. Check S3 bucket for assessment results
+
+TROUBLESHOOTING:
+- Check AWS Lambda logs in CloudWatch
+- Verify S3 audio files are accessible
+- Confirm Twilio Auth Token is set in Lambda environment

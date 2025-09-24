@@ -1,0 +1,132 @@
+{
+  "recording_metadata": {
+    "source": "Atlassian GravyWork Skill Assessment Templates",
+    "url": "https://gravywork.atlassian.net/wiki/spaces/GWIS/pages/931069961/Skill+Assessment+Templates",
+    "created_date": "2025-09-24",
+    "purpose": "Definitive template for ElevenLabs audio re-recording",
+    "total_files": 32
+  },
+  
+  "banquet_server": {
+    "role_name": "Banquet Server / Food Runner",
+    "language_requirement": "bilingual",
+    "total_questions": 11,
+    "questions_sequence": [
+      "intro",
+      "experience_1", 
+      "experience_2",
+      "experience_3",
+      "knowledge_setup",
+      "knowledge_wine", 
+      "knowledge_clearing",
+      "knowledge_scenario",
+      "english_greeting",
+      "english_complaint",
+      "goodbye"
+    ],
+    "scripts": {
+      "intro": "Hello! Welcome to the GravyWork skills assessment for Banquet Server position. This assessment will take approximately 5 minutes. I'll ask you several questions about your experience and knowledge. Please speak clearly after each question, and press the pound key when you are finished with each answer. If you need to hear a question repeated, press the star key.",
+      "experience_1": "Tell me about where you've worked as a banquet server or food runner.",
+      "experience_2": "When did you work in that role, what years, and for how long?",
+      "experience_3": "And what were your main responsibilities in that job?",
+      "knowledge_setup": "How do you know if a place setting is correct? Describe it.",
+      "knowledge_wine": "When pouring wine, which side do you approach from, and why?",
+      "knowledge_clearing": "From which side do you clear plates?",
+      "knowledge_scenario": "If a guest says they are vegetarian but their entrée has meat, what do you do?",
+      "english_greeting": "How would you greet a guest when they arrive at your table?",
+      "english_complaint": "If a guest says their food is cold, what do you do?",
+      "goodbye": "Thank you for completing the assessment. We'll review your responses and be in touch within the next few days. Have a great day!"
+    }
+  },
+  
+  "bartender": {
+    "role_name": "Bartender",
+    "language_requirement": "english_only",
+    "total_questions": 11,
+    "questions_sequence": [
+      "intro",
+      "experience_1",
+      "experience_2", 
+      "experience_3",
+      "knowledge_glassware_1",
+      "knowledge_glassware_2",
+      "knowledge_margarita",
+      "knowledge_old_fashioned",
+      "knowledge_tools",
+      "knowledge_service",
+      "goodbye"
+    ],
+    "scripts": {
+      "intro": "Hello! Welcome to the GravyWork skills assessment for Bartender position. This interview is conducted in English since bartenders must be able to interact with guests in English. If you are not comfortable continuing in English, you may end the interview here. This assessment will take approximately 5 minutes. I'll ask you several questions about your experience and knowledge. Please speak clearly after each question, and press the pound key when you are finished with each answer. If you need to hear a question repeated, press the star key.",
+      "experience_1": "Tell me about where you've worked as a bartender.",
+      "experience_2": "When did you work in that role?",
+      "experience_3": "And what were your main responsibilities?",
+      "knowledge_glassware_1": "In what glass would you typically serve a Cosmopolitan?",
+      "knowledge_glassware_2": "In what glass would you typically serve an Old Fashioned?",
+      "knowledge_margarita": "What are the basic ingredients in a Margarita?",
+      "knowledge_old_fashioned": "What are the basics of an Old Fashioned?",
+      "knowledge_tools": "What tools would you use to shake and strain a cocktail?",
+      "knowledge_service": "If a guest is overly intoxicated, how do you handle it?",
+      "goodbye": "Thank you for completing the assessment. We'll review your responses and be in touch within the next few days. Have a great day!"
+    }
+  },
+  
+  "host": {
+    "role_name": "Host",
+    "language_requirement": "english_only", 
+    "total_questions": 10,
+    "questions_sequence": [
+      "intro",
+      "experience_1",
+      "experience_2",
+      "experience_3", 
+      "knowledge_pos",
+      "knowledge_seating",
+      "knowledge_phone",
+      "knowledge_reservation",
+      "knowledge_walkin",
+      "goodbye"
+    ],
+    "scripts": {
+      "intro": "Hello! Welcome to the GravyWork skills assessment for Host position. This interview is conducted in English since hosts must be able to interact with guests in English. If you are not comfortable continuing in English, you may end the interview here. This assessment will take approximately 5 minutes. I'll ask you several questions about your experience and knowledge. Please speak clearly after each question, and press the pound key when you are finished with each answer. If you need to hear a question repeated, press the star key.",
+      "experience_1": "Tell me about where you've worked as a host.",
+      "experience_2": "When did you work in that role?",
+      "experience_3": "And what were your main responsibilities?",
+      "knowledge_pos": "Have you used a reservation system like Toast, OpenTable, or Resy? How do you use it?",
+      "knowledge_seating": "When assigning tables, how do you decide where to seat guests?",
+      "knowledge_phone": "What information should you collect when a guest calls to make a reservation?",
+      "knowledge_reservation": "How would you handle a guest who arrives saying they have a reservation, but you don't see it in the system?",
+      "knowledge_walkin": "How do you handle a walk-in group of 10 guests?",
+      "goodbye": "Thank you for completing the assessment. We'll review your responses and be in touch within the next few days. Have a great day!"
+    }
+  },
+  
+  "recording_instructions": {
+    "voice_characteristics": {
+      "tone": "Professional, friendly, and warm",
+      "pace": "Clear articulation and moderate pace", 
+      "accent": "Neutral American accent preferred",
+      "consistency": "Consistent volume and tone throughout"
+    },
+    "technical_specifications": {
+      "format": "MP3, 44.1kHz, 128kbps or higher",
+      "quality": "No background noise or echo",
+      "levels": "Consistent audio levels across all files",
+      "silence": "0.5 second silence at start and end of each file"
+    },
+    "delivery_notes": {
+      "pacing": "Pause slightly after questions to give candidates time to process",
+      "naturalness": "Speak as if talking to a real person, not reading a script", 
+      "professionalism": "Maintain professional but approachable tone throughout",
+      "bilingual_note": "For banquet server intro, clearly enunciate language options"
+    },
+    "file_naming": {
+      "pattern": "{role}/{question_key}.mp3",
+      "examples": [
+        "banquet_server/intro.mp3",
+        "bartender/knowledge_glassware_1.mp3", 
+        "host/knowledge_pos.mp3"
+      ]
+    }
+  }
+}
