@@ -49,8 +49,60 @@ class LLMComparisonProcessor:
             }
         }
     
+    def get_actual_transcripts(self, assessment_id: str) -> Dict[str, str]:
+        """Get actual transcripts from S3 assessment results."""
+        try:
+            # Download the analysis results which contain transcripts
+            s3_key = f'assessments/{assessment_id}/analysis_results.json'
+            response = self.s3_client.get_object(Bucket=self.bucket_name, Key=s3_key)
+            analysis_data = json.loads(response['Body'].read().decode('utf-8'))
+            
+            # Extract transcripts from the analysis data
+            transcripts = analysis_data.get('transcripts', {})
+            if transcripts:
+                print(f"✅ Loaded actual transcripts for {assessment_id}")
+                return transcripts
+            else:
+                print(f"⚠️ No transcripts found in {assessment_id}")
+                return {}
+                
+        except Exception as e:
+            print(f"❌ Error loading transcripts for {assessment_id}: {str(e)}")
+            return {}
+
     def find_sample_assessments(self) -> Dict[str, str]:
-        """Find one completed assessment for each role."""
+        """Find specific assessments for comparison."""
+        # Use specific assessments as requested
+        specific_assessments = {
+            'host': 'host_20250924_234917_0112',           # Latest Host assessment
+            'banquet_server': 'banquet_server_20250924_212014_0112',  # PASS status
+            'bartender': 'bartender_20250924_164503_0112'   # Latest Bartender
+        }
+        
+        try:
+            # Verify these assessments exist in S3
+            verified_assessments = {}
+            for role, assessment_id in specific_assessments.items():
+                try:
+                    # Check if analysis_results.json exists
+                    self.s3_client.head_object(
+                        Bucket=self.bucket_name,
+                        Key=f'assessments/{assessment_id}/analysis_results.json'
+                    )
+                    verified_assessments[role] = assessment_id
+                    print(f"✅ Verified {role}: {assessment_id}")
+                except:
+                    print(f"❌ Assessment not found: {assessment_id}")
+            
+            return verified_assessments
+            
+        except Exception as e:
+            print(f"❌ Error verifying assessments: {e}")
+            # Fallback to original logic
+            return self._find_sample_assessments_fallback()
+    
+    def _find_sample_assessments_fallback(self) -> Dict[str, str]:
+        """Original find logic as fallback."""
         try:
             # List all assessment directories
             response = self.s3_client.list_objects_v2(
@@ -108,19 +160,25 @@ class LLMComparisonProcessor:
             }
             
             response = self.lambda_client.invoke(
-                FunctionName='gravywork-vscode-llm-comparison-processor',
+                FunctionName='gravywork-dev-llm-comparison-processor',
                 InvocationType='RequestResponse',
                 Payload=json.dumps(payload)
             )
             
             result = json.loads(response['Payload'].read().decode('utf-8'))
             
-            if result.get('success'):
-                logger.info(f"✅ Completed {skill_type} comparison")
-                return result
+            # Parse the Lambda response format (statusCode + body)
+            if result.get('statusCode') == 200 and result.get('body'):
+                body = json.loads(result['body'])
+                if body.get('success'):
+                    logger.info(f"✅ Completed {skill_type} comparison")
+                    return body
+                else:
+                    logger.error(f"❌ Failed {skill_type} comparison: {body.get('error', 'Unknown error')}")
+                    return {'success': False, 'error': body.get('error', 'Unknown error')}
             else:
-                logger.error(f"❌ Failed {skill_type} comparison: {result.get('error', 'Unknown error')}")
-                return {'success': False, 'error': result.get('error', 'Unknown error')}
+                logger.error(f"❌ Failed {skill_type} comparison: Lambda returned status {result.get('statusCode')}")
+                return {'success': False, 'error': f"Lambda returned status {result.get('statusCode')}"}
                 
         except Exception as e:
             logger.error(f"Error running comparison for {assessment_id}: {str(e)}")
@@ -181,7 +239,17 @@ class LLMComparisonProcessor:
                 continue
                 
             assessment_type = skill_type.replace('_', ' ').title()
-            responses = self.candidate_responses.get(skill_type, {})
+            
+            # Get actual transcripts from S3 assessment results instead of hardcoded data
+            # Map skill_type back to assessment_id
+            skill_to_assessment = {
+                'host': 'host_20250924_234917_0112',
+                'banquet_server': 'banquet_server_20250924_212014_0112', 
+                'bartender': 'bartender_20250924_164503_0112'
+            }
+            current_assessment_id = skill_to_assessment.get(skill_type, skill_type)
+            actual_transcripts = self.get_actual_transcripts(current_assessment_id)
+            responses = actual_transcripts if actual_transcripts else self.candidate_responses.get(skill_type, {})
             
             # Get LLM results
             llm_results = assessment_results.get('results', {})
@@ -245,11 +313,11 @@ class LLMComparisonProcessor:
             'Output Tokens', 'Total Tokens', 'Accuracy Score', 'Cost Per Assessment'
         ]
         
-        # Pricing data (per 1M tokens)
+        # Pricing data (per 1K tokens) - Updated with official AWS Bedrock pricing
         pricing = {
-            'claude-sonnet-4': {'input': 15.00, 'output': 75.00},
-            'nova-micro': {'input': 0.35, 'output': 1.40},
-            'nova-pro': {'input': 0.80, 'output': 3.20}
+            'claude-sonnet-4': {'input': 0.003, 'output': 0.015},  # For ≤200K tokens
+            'nova-micro': {'input': 0.000035, 'output': 0.00014},
+            'nova-pro': {'input': 0.0008, 'output': 0.0032}
         }
         
         for skill_type, assessment_results in results.items():
@@ -272,19 +340,19 @@ class LLMComparisonProcessor:
                 accuracy = metrics.get('llm_total_accuracy', 0)
                 
                 # Calculate cost
-                input_cost = (input_tokens / 1_000_000) * pricing[llm_name]['input']
-                output_cost = (output_tokens / 1_000_000) * pricing[llm_name]['output']
+                input_cost = (input_tokens / 1_000) * pricing[llm_name]['input']
+                output_cost = (output_tokens / 1_000) * pricing[llm_name]['output']
                 total_cost = input_cost + output_cost
                 
                 csv_rows.append([
                     llm_name.title().replace('-', ' '),
                     assessment_type,
                     f"{processing_time:.2f}",
-                    f"{input_tokens:,}",
-                    f"{output_tokens:,}",
-                    f"{total_tokens:,}",
-                    f"{accuracy:.3f}",
-                    f"${total_cost:.4f}"
+                    str(input_tokens),  # Remove comma formatting
+                    str(output_tokens),  # Remove comma formatting
+                    str(total_tokens),   # Remove comma formatting
+                    f"{accuracy * 100:.1f}%",  # Convert to percentage and display with 1 decimal
+                    f"${total_cost:.6f}"
                 ])
         
         # Write CSV file
@@ -302,6 +370,7 @@ class LLMComparisonProcessor:
         print("=" * 60)
         
         # Step 1: Load existing results if available
+        all_results = {}  # Initialize the variable
         if use_existing_results and os.path.exists('llm_comparison_results.json'):
             print("📁 Loading existing comparison results...")
             try:
@@ -309,7 +378,6 @@ class LLMComparisonProcessor:
                     existing_data = json.load(f)
                 
                 # Convert to expected format
-                all_results = {}
                 for assessment_type in ['bartender', 'host']:  # Focus on the two we have data for
                     if assessment_type in existing_data:
                         all_results[assessment_type] = existing_data[assessment_type]

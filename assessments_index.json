@@ -1,0 +1,60 @@
+{
+  "assessments": [
+    {
+      "id": "host_20250924_234917_0112",
+      "role": "host",
+      "date": "20250924",
+      "time": "234917",
+      "status": "review",
+      "analyzed_at": "2025-09-24T23:55:11.130280",
+      "file_path": "assessments/host_20250924_234917_0112/analysis_results.json"
+    },
+    {
+      "id": "banquet_server_20250924_212014_0112",
+      "role": "banquet server",
+      "date": "20250924",
+      "time": "212014",
+      "status": "pass",
+      "analyzed_at": "2025-09-24T21:25:39.667290",
+      "file_path": "assessments/banquet_server_20250924_212014_0112/analysis_results.json"
+    },
+    {
+      "id": "host_20250924_165924_0112",
+      "role": "host",
+      "date": "20250924",
+      "time": "165924",
+      "status": "review",
+      "analyzed_at": "2025-09-24T17:27:30.783320",
+      "file_path": "assessments/host_20250924_165924_0112/analysis_results.json"
+    },
+    {
+      "id": "banquet_server_20250924_165211_0112",
+      "role": "banquet server",
+      "date": "20250924",
+      "time": "165211",
+      "status": "fail",
+      "analyzed_at": "2025-09-24T16:57:03.413927",
+      "file_path": "assessments/banquet_server_20250924_165211_0112/analysis_results.json"
+    },
+    {
+      "id": "bartender_20250924_164503_0112",
+      "role": "bartender",
+      "date": "20250924",
+      "time": "164503",
+      "status": "review",
+      "analyzed_at": "2025-09-24T16:50:00.201972",
+      "file_path": "assessments/bartender_20250924_164503_0112/analysis_results.json"
+    },
+    {
+      "id": "bartender_20250924_161458_0112",
+      "role": "bartender",
+      "date": "20250924",
+      "time": "161458",
+      "status": "review",
+      "analyzed_at": "2025-09-24T16:37:50.742828",
+      "file_path": "assessments/bartender_20250924_161458_0112/analysis_results.json"
+    }
+  ],
+  "last_updated": "2025-09-24T23:55:11.309597",
+  "total_count": 6
+}

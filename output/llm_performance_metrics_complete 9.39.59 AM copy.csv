@@ -1,0 +1,10 @@
+Model,Assessment Type,Processing Time (seconds),Input Tokens,Output Tokens,Total Tokens,Accuracy Score,Cost Per Assessment
+Claude Sonnet 4,Host,15.92,2674,814,3488,1.000,$0.1012
+Nova Micro,Host,2.70,2410,763,3173,0.000,$0.0019
+Nova Pro,Host,5.35,2410,632,3042,0.000,$0.0040
+Claude Sonnet 4,Banquet Server,13.17,2600,766,3366,1.000,$0.0965
+Nova Micro,Banquet Server,2.33,2339,719,3058,0.000,$0.0018
+Nova Pro,Banquet Server,5.20,2339,685,3024,0.000,$0.0041
+Claude Sonnet 4,Bartender,15.72,2512,917,3429,1.000,$0.1065
+Nova Micro,Bartender,3.24,2201,841,3042,0.000,$0.0019
+Nova Pro,Bartender,5.49,2201,708,2909,0.000,$0.0040

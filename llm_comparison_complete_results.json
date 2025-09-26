@@ -1,83 +1,76 @@
 {
-  "bartender": {
+  "host": {
     "success": true,
-    "assessment_id": "bartender_20250924_161458_0112",
-    "skill_type": "bartender",
+    "assessment_id": "host_20250924_234917_0112",
+    "skill_type": "host",
     "results": {
       "claude-sonnet-4": {
         "analysis": {
           "overall_assessment": {
-            "recommendation": "FAIL",
-            "reasoning": "Candidate fails to meet the 70% threshold in any category. Major concerns include inappropriate response about responsible alcohol service, vague experience descriptions, and incorrect glassware knowledge.",
-            "categories_above_70_percent": 0
+            "recommendation": "REVIEW",
+            "reasoning": "The candidate scored above 70% in the Knowledge category, demonstrating strong technical understanding. However, concerning responses in Baseline and Experience categories raise questions about customer service skills and truthfulness of background claims. Further review is recommended.",
+            "categories_above_70_percent": 1
           },
           "category_breakdown": {},
           "question_details": {
-            "knowledge_service": {
+            "knowledge_phone": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentioned the key information to collect (name, party size, phone number, special notes), though the response was a bit disorganized."
+            },
+            "knowledge_reservation": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Response about pouring out a customer's drink when they're not looking shows poor judgment and unethical behavior, which is completely inappropriate for responsible alcohol service"
+              "reasoning": "Threatening to call the police on a guest for a missing reservation is an unacceptable response and shows poor customer service."
             },
             "experience_1": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Very vague response mentioning Houston's restaurants and McDonald's without any specific bartending experience, timeframes, or relevant details"
+              "reasoning": "The claim of having a 'hosting degree' and working at the 'finest 5-star Michelin restaurants' seems highly implausible and not credible."
             },
             "experience_2": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Repetitive and vague information about working at McDonald's and Houston's with minimal detail and no specific bartending experience mentioned"
+              "reasoning": "Claiming to have 20 years of experience at age 22 is clearly not truthful or credible."
             },
             "experience_3": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "Mentions serving drinks to customers and handling payments, which are relevant bartending duties, though the phrasing 'start new liquor' is unclear"
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate provided a detailed and comprehensive overview of host responsibilities, demonstrating strong relevant experience."
             },
-            "knowledge_glassware_1": {
+            "knowledge_pos": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate showed in-depth knowledge of using reservation management systems like Toast, OpenTable, and Resy."
+            },
+            "knowledge_seating": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The response covered the key considerations for assigning tables, including balancing server sections, managing flow based on current volume, and accommodating guest preferences."
+            },
+            "knowledge_walkin": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Incorrect answer - Cosmopolitan should be served in a martini/cocktail glass, not a lowball glass"
-            },
-            "knowledge_glassware_2": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Incorrect answer - Old Fashioned should be served in a lowball/rocks glass, not a highball glass"
-            },
-            "knowledge_margarita": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "Correctly identifies the three basic ingredients: lime, triple sec (said as 'triple set'), and tequila, despite minor pronunciation issue"
-            },
-            "knowledge_old_fashioned": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "Correctly mentions bourbon and bitters, though says lemon instead of orange garnish and doesn't mention sugar"
-            },
-            "knowledge_tools": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "Correctly identifies shaker and strainer as the basic tools needed for shaking and straining cocktails"
+              "reasoning": "Seating a party of 10 across 10 separate tables is an unreasonable and unacceptable approach."
             }
           },
           "summary": {
             "strengths": [
-              "Basic knowledge of cocktail ingredients for Margarita and Old Fashioned",
-              "Understanding of basic bartending tools",
-              "Some awareness of bartending duties like serving drinks and handling payments"
+              "Detailed knowledge of host responsibilities and reservation systems",
+              "Solid understanding of table management and seating processes"
             ],
             "areas_for_improvement": [
-              "Critical lack of responsible alcohol service knowledge and judgment",
-              "Insufficient relevant bartending experience details",
-              "Poor knowledge of proper glassware selection",
-              "Need for more comprehensive understanding of bartending fundamentals"
+              "Concerning response about handling missing reservations",
+              "Multiple claims about experience seem implausible or untruthful",
+              "Poor judgment in response to large party situation"
             ]
           }
         },
         "metrics": {
-          "llm_processing_time_seconds": 11.547937631607056,
-          "llm_total_input_tokens": 2436,
-          "llm_total_output_tokens": 937,
-          "llm_total_tokens": 3373,
+          "llm_processing_time_seconds": 19.38302707672119,
+          "llm_total_input_tokens": 2674,
+          "llm_total_output_tokens": 834,
+          "llm_total_tokens": 3508,
           "llm_total_accuracy": 1.0,
           "score_correlation": 1.0,
           "recommendation_accuracy": 1.0
@@ -87,236 +80,224 @@
         "analysis": {
           "overall_assessment": {
             "recommendation": "FAIL",
-            "reasoning": "Fails to meet the 70% threshold across all three categories. Baseline and experience categories fall significantly below the threshold.",
+            "reasoning": "The candidate did not meet the 70% threshold in any of the three categories. The responses lacked professionalism, clarity, and credibility.",
             "categories_above_70_percent": 0
           },
           "category_breakdown": {},
           "question_details": {
-            "knowledge_service": {
+            "knowledge_phone": {
+              "score": "4/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The response lacked clarity and completeness. The candidate mentioned phone number, name, party size, and special notes but delivered the answer in a hesitant and unclear manner."
+            },
+            "knowledge_reservation": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response suggests unethical behavior (pouring drinks out when not looking), which is a red flag for responsible alcohol service."
+              "reasoning": "The response was inappropriate and unprofessional. The candidate suggested calling the police and removing the guest, which is not an acceptable or professional response."
             },
             "experience_1": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response mentions working at Houston's restaurants and McDonald's, but it is vague and does not provide specific details about bartending experience."
+              "reasoning": "The response was vague and lacked credibility. The candidate claimed extensive experience but did not provide specific details or examples."
             },
             "experience_2": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response repeats vague information about working at McDonald's and Houston's, without detailing specific bartending responsibilities."
+              "reasoning": "The response was implausible and lacked credibility. The candidate claimed 20 years of experience at a very young age, which is not believable."
             },
             "experience_3": {
-              "score": "4/10",
-              "level": "\ud83d\udd34 Acceptable",
-              "reasoning": "The response mentions serving drinks, starting new liquor, and taking money, which are relevant bartending duties but lacks detailed credibility."
-            },
-            "knowledge_glassware_1": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response 'Low ball' is vague and incorrect; a Cosmopolitan is typically served in a martini or cocktail glass."
-            },
-            "knowledge_glassware_2": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response 'Highball' is incorrect; an Old Fashioned is typically served in a lowball, rocks, or old fashioned glass."
-            },
-            "knowledge_margarita": {
-              "score": "4/10",
-              "level": "\ud83d\udd34 Acceptable",
-              "reasoning": "The response mentions lime, triple sec, and tequila, which are correct ingredients but omits the important detail of the salt rim."
-            },
-            "knowledge_old_fashioned": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response mentions bourbon, bitters, and lemon but misses the key ingredient of sugar."
-            },
-            "knowledge_tools": {
               "score": "7/10",
               "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The response mentions a shaker and strainer, which are correct tools for mixing cocktails."
+              "reasoning": "The response mentioned several relevant duties but lacked specific details or examples to fully validate the candidate's experience."
+            },
+            "knowledge_pos": {
+              "score": "4/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The response was unclear and incorrect. The candidate mentioned using the system for SMS but incorrectly referred to 'Rei' and provided an inaccurate description of the system's functionality."
+            },
+            "knowledge_seating": {
+              "score": "5/10",
+              "level": "\ud83d\udd34 Acceptable",
+              "reasoning": "The response mentioned balancing server sections and considering guest preferences but delivered the answer in a hesitant manner."
+            },
+            "knowledge_walkin": {
+              "score": "3/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The response was inappropriate and impractical. The candidate suggested seating each guest at a separate table without considering space or wait time."
             }
           },
           "summary": {
             "strengths": [
-              "Some relevant bartending duties mentioned",
-              "Basic knowledge of cocktail ingredients and tools"
+              "Some relevant experience and knowledge were mentioned."
             ],
             "areas_for_improvement": [
-              "Ethical service practices",
-              "Detailed bartending experience",
-              "Accurate knowledge of glassware and recipes"
+              "Professionalism, clarity, and credibility need significant improvement."
             ]
           }
         },
         "metrics": {
-          "llm_processing_time_seconds": 2.725055694580078,
-          "llm_total_input_tokens": 2142,
-          "llm_total_output_tokens": 796,
-          "llm_total_tokens": 2938,
-          "llm_total_accuracy": 0.0,
-          "recommendation_accuracy": 0.0,
+          "llm_processing_time_seconds": 2.3663277626037598,
+          "llm_total_input_tokens": 2410,
+          "llm_total_output_tokens": 720,
+          "llm_total_tokens": 3130,
+          "recommendation_accuracy": 1.0,
           "score_correlation": 0.0,
-          "category_accuracy": 0.0
+          "category_accuracy": 0.0,
+          "llm_total_accuracy": 0.7714285714285714
         }
       },
       "nova-pro": {
         "analysis": {
           "overall_assessment": {
             "recommendation": "REVIEW",
-            "reasoning": "The candidate scored 70% or higher in only two out of three categories.",
-            "categories_above_70_percent": 2
-          },
-          "category_breakdown": {},
-          "question_details": {
-            "knowledge_service": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response is vague and suggests inappropriate behavior, which is a red flag for responsible alcohol service."
-            },
-            "experience_1": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate mentions relevant experience at Houston's and McDonald's, though the details are minimal."
-            },
-            "experience_2": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate provides some relevant experience at McDonald's and Houston's, though the details are minimal and somewhat vague."
-            },
-            "experience_3": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate mentions relevant bartending duties, though the details are minimal and somewhat vague."
-            },
-            "knowledge_glassware_1": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate incorrectly identified the glass for a Cosmopolitan as a low ball, which is incorrect."
-            },
-            "knowledge_glassware_2": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate incorrectly identified the glass for an Old Fashioned as a highball, which is incorrect."
-            },
-            "knowledge_margarita": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate correctly identified the key ingredients for a Margarita, though the response was somewhat vague."
-            },
-            "knowledge_old_fashioned": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate correctly identified some key ingredients for an Old Fashioned, though the response was somewhat vague."
-            },
-            "knowledge_tools": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate correctly identified the key tools for shaking and straining a cocktail, though the response was somewhat vague."
-            }
-          },
-          "summary": {
-            "strengths": [
-              "Relevant experience at Houston's and McDonald's",
-              "Basic knowledge of Margarita and Old Fashioned ingredients",
-              "Awareness of tools for shaking and straining cocktails"
-            ],
-            "areas_for_improvement": [
-              "Responsible alcohol service judgment",
-              "Accurate knowledge of glassware for specific drinks",
-              "Detailed and specific examples of bartending experience"
-            ]
-          }
-        },
-        "metrics": {
-          "llm_processing_time_seconds": 5.463394641876221,
-          "llm_total_input_tokens": 2142,
-          "llm_total_output_tokens": 766,
-          "llm_total_tokens": 2908,
-          "llm_total_accuracy": 0.0,
-          "recommendation_accuracy": 0.0,
-          "score_correlation": 0.0,
-          "category_accuracy": 0.0
-        }
-      }
-    },
-    "timestamp": 1758751384.5378678
-  },
-  "host": {
-    "success": true,
-    "assessment_id": "host_20250924_165924_0112",
-    "skill_type": "host",
-    "results": {
-      "claude-sonnet-4": {
-        "analysis": {
-          "overall_assessment": {
-            "recommendation": "FAIL",
-            "reasoning": "Candidate failed to achieve 70% threshold in any category. Major concerns include unprofessional customer service attitude, poor technical knowledge of host operations, and inconsistent communication skills.",
-            "categories_above_70_percent": 0
+            "reasoning": "The candidate did not meet the 70% threshold in all three categories. Only the 'experience' category scored above 70%.",
+            "categories_above_70_percent": 1
           },
           "category_breakdown": {},
           "question_details": {
             "knowledge_phone": {
               "score": "7/10",
               "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "Candidate mentioned all key elements: party size, name, dates/times, phone number, and special requests. Despite hesitant delivery with 'ums', all essential information collection points were covered."
+              "reasoning": "The candidate mentioned name, party size, phone number, and special notes, but did not include time/date."
             },
             "knowledge_reservation": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Candidate displayed extremely poor customer service attitude by saying 'tell them to screw off' and 'it's not my job.' This is completely unacceptable for a host position and shows lack of professionalism."
+              "reasoning": "The candidate suggested calling the police, which is not an appropriate response."
             },
             "experience_1": {
               "score": "7/10",
               "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "Candidate provided relevant host experience at Whataburger for 3 years, which is credible and directly applicable to the position, despite hesitant delivery."
+              "reasoning": "The candidate mentioned working at multiple high-end restaurants but the details were exaggerated and somewhat unbelievable."
             },
             "experience_2": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Response was confusing and unclear about actual timeframe, showing poor communication skills and inability to clearly articulate basic employment history."
+              "reasoning": "The candidate claimed 20 years of experience at age 22, which is not credible."
             },
             "experience_3": {
-              "score": "7/10",
-              "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "Candidate mentioned relevant host duties including greeting guests, seating ('signing tables to servers'), answering phones, and handling to-go orders. Despite some unclear wording, core responsibilities were identified."
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate provided detailed and credible experience with specific examples."
             },
             "knowledge_pos": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Candidate acknowledged using a reservation system but provided no details about functionality or usage, showing limited technical knowledge for the role."
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentioned using the systems and some functionalities but not all key concepts."
             },
             "knowledge_seating": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Response of 'flip a coin' shows complete lack of understanding of proper table assignment strategy and restaurant operations."
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate provided a comprehensive answer covering all key concepts."
             },
             "knowledge_walkin": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "Response to split party of 10 into groups of 5 shows poor understanding of large party management and lacks consideration of wait times, space availability, or proper procedures."
+              "reasoning": "The candidate suggested an impractical solution of seating each guest at a different table."
             }
           },
           "summary": {
             "strengths": [
-              "Has relevant host experience at Whataburger for 3 years",
-              "Knows basic reservation information to collect from guests"
+              "Detailed and credible experience in relevant duties (experience_3)",
+              "Comprehensive understanding of seating strategies (knowledge_seating)"
             ],
             "areas_for_improvement": [
-              "Extremely poor customer service attitude and professionalism",
-              "Lacks understanding of proper table assignment strategies",
-              "Poor technical knowledge of reservation systems",
-              "Unclear communication and difficulty articulating experience",
-              "No understanding of large party management procedures"
+              "Handling reservation discrepancies (knowledge_reservation)",
+              "Practical solutions for large walk-in groups (knowledge_walkin)",
+              "Consistent demonstration of baseline criteria (knowledge_phone, knowledge_reservation)"
             ]
           }
         },
         "metrics": {
-          "llm_processing_time_seconds": 18.251737356185913,
-          "llm_total_input_tokens": 2425,
-          "llm_total_output_tokens": 901,
-          "llm_total_tokens": 3326,
+          "llm_processing_time_seconds": 5.862349033355713,
+          "llm_total_input_tokens": 2410,
+          "llm_total_output_tokens": 689,
+          "llm_total_tokens": 3099,
+          "recommendation_accuracy": 1.0,
+          "score_correlation": 0.0,
+          "category_accuracy": 0.0,
+          "llm_total_accuracy": 0.9625
+        }
+      }
+    },
+    "timestamp": 1758821624.9168572
+  },
+  "banquet_server": {
+    "success": true,
+    "assessment_id": "banquet_server_20250924_212014_0112",
+    "skill_type": "banquet_server",
+    "results": {
+      "claude-sonnet-4": {
+        "analysis": {
+          "overall_assessment": {
+            "recommendation": "PASS",
+            "reasoning": "The candidate meets the 70% threshold across all three categories, demonstrating acceptable English skills, relevant experience, and strong technical knowledge.",
+            "categories_above_70_percent": 3
+          },
+          "category_breakdown": {},
+          "question_details": {
+            "english_greeting": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The greeting covers the key elements of welcoming the guest and offering drinks, though it could be more polished."
+            },
+            "english_complaint": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The response indicates taking the food back to the kitchen and apologizing, which are the main steps, though a more detailed response would be ideal."
+            },
+            "experience_1": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentions relevant experience working weddings in a specific geographic area."
+            },
+            "experience_2": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The response provides some timeframe context for the wedding experience."
+            },
+            "experience_3": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate lists several key responsibilities like serving food/drinks, setup, following course sequence, clearing tables, and guest interaction."
+            },
+            "knowledge_setup": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The response demonstrates detailed knowledge of proper table setup and placement of items."
+            },
+            "knowledge_wine": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "While brief, the response correctly indicates wine glasses are on the right side."
+            },
+            "knowledge_clearing": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate clearly knows to clear plates from the right side to avoid reaching across guests."
+            },
+            "knowledge_scenario": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The main steps of apologizing, taking back the food, offering an alternative, and notifying kitchen staff are covered."
+            }
+          },
+          "summary": {
+            "strengths": [
+              "Solid technical knowledge of banquet service setup and procedures",
+              "Relevant experience working weddings and banquet events"
+            ],
+            "areas_for_improvement": [
+              "More polished English greetings and customer service phrasing",
+              "Providing more details and specific examples when describing experience"
+            ]
+          }
+        },
+        "metrics": {
+          "llm_processing_time_seconds": 15.775295734405518,
+          "llm_total_input_tokens": 2600,
+          "llm_total_output_tokens": 794,
+          "llm_total_tokens": 3394,
           "llm_total_accuracy": 1.0,
           "score_correlation": 1.0,
           "recommendation_accuracy": 1.0
@@ -325,144 +306,392 @@
       "nova-micro": {
         "analysis": {
           "overall_assessment": {
-            "recommendation": "FAIL",
-            "reasoning": "The candidate did not meet the 70% threshold in any of the three categories. Specifically, the baseline category was below the threshold, indicating significant gaps in essential skills.",
-            "categories_above_70_percent": 0
+            "recommendation": "REVIEW",
+            "reasoning": "The candidate's average scores across all categories are below the 70% threshold. While there are some acceptable responses, the overall performance does not meet the pass criteria.",
+            "categories_above_70_percent": 1
           },
           "category_breakdown": {},
           "question_details": {
-            "knowledge_phone": {
-              "score": "4/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response was incomplete and lacked key information such as special requests or allergies. The candidate struggled to articulate the necessary details."
+            "english_greeting": {
+              "score": "6/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate provided a greeting and offered a drink, but the response was somewhat hesitant and lacked the ideal structure."
             },
-            "knowledge_reservation": {
-              "score": "0/10",
-              "level": "\ud83d\udd34 No Response",
-              "reasoning": "The candidate provided an inappropriate and unprofessional response, indicating a lack of understanding of how to handle reservation discrepancies."
+            "english_complaint": {
+              "score": "6/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate acknowledged the issue and mentioned taking the food back to the kitchen, but the response lacked a clear apology and immediate action."
             },
             "experience_1": {
-              "score": "4/10",
-              "level": "\ud83d\udd34 Acceptable",
-              "reasoning": "The candidate mentioned relevant experience but did so in a vague manner without specific details."
+              "score": "6/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentioned working at weddings in Atlanta and Tennessee, but the response was vague and lacked specific details."
             },
             "experience_2": {
-              "score": "4/10",
-              "level": "\ud83d\udd34 Acceptable",
-              "reasoning": "The candidate provided a somewhat vague timeframe of experience but did not include specific details."
+              "score": "5/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The candidate mentioned working during the wedding season but did not provide specific details or examples."
             },
             "experience_3": {
+              "score": "6/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate described various duties related to banquet service, but the response was unclear and lacked specific examples."
+            },
+            "knowledge_setup": {
+              "score": "6/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate described the setup of place settings but the response was vague and lacked specific details."
+            },
+            "knowledge_wine": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate's description of duties was vague and did not provide clear examples of relevant experience."
+              "reasoning": "The candidate's response was vague and did not provide any specific details about wine service."
             },
-            "knowledge_pos": {
-              "score": "4/10",
-              "level": "\ud83d\udd34 Acceptable",
-              "reasoning": "The candidate indicated some familiarity with a reservation system but did not specify how they used it."
+            "knowledge_clearing": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate correctly stated that plates should be cleared from the right, which is acceptable."
             },
-            "knowledge_seating": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate suggested an arbitrary method for seating guests, which lacks professionalism and does not consider guest preferences or operational efficiency."
-            },
-            "knowledge_walkin": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate proposed seating guests in a non-strategic manner without considering the operational needs or guest comfort."
+            "knowledge_scenario": {
+              "score": "6/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate described a basic response to a scenario but lacked specific details and immediate action."
             }
           },
           "summary": {
             "strengths": [
-              "Some relevant experience was mentioned."
+              "Provided some relevant experience and knowledge"
             ],
             "areas_for_improvement": [
-              "Professionalism, knowledge of reservation systems, and handling of walk-ins and seating strategies need improvement."
+              "More specific details and clearer responses needed"
             ]
           }
         },
         "metrics": {
-          "llm_processing_time_seconds": 2.473568916320801,
-          "llm_total_input_tokens": 2172,
-          "llm_total_output_tokens": 683,
-          "llm_total_tokens": 2855,
-          "llm_total_accuracy": 0.0,
-          "recommendation_accuracy": 0.0,
+          "llm_processing_time_seconds": 2.3296279907226562,
+          "llm_total_input_tokens": 2339,
+          "llm_total_output_tokens": 718,
+          "llm_total_tokens": 3057,
+          "recommendation_accuracy": 1.0,
           "score_correlation": 0.0,
-          "category_accuracy": 0.0
+          "category_accuracy": 0.0,
+          "llm_total_accuracy": 0.7476190476190476
         }
       },
       "nova-pro": {
         "analysis": {
           "overall_assessment": {
-            "recommendation": "FAIL",
-            "reasoning": "The candidate did not meet the 70% threshold in any category, with particularly low scores in the 'knowledge' category.",
-            "categories_above_70_percent": 0
+            "recommendation": "REVIEW",
+            "reasoning": "The candidate scored 70% or higher in two out of three categories.",
+            "categories_above_70_percent": 2
           },
           "category_breakdown": {},
           "question_details": {
-            "knowledge_phone": {
+            "english_greeting": {
               "score": "7/10",
               "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate mentioned most of the key information to collect (name, party size, date/time, phone number, special requests), though the response was somewhat disorganized."
+              "reasoning": "The response is acceptable as it contains the key concepts and tools mentioned, even though it is not perfectly worded."
             },
-            "knowledge_reservation": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate's response was unprofessional and indicated a lack of understanding of how to handle the situation appropriately."
+            "english_complaint": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The response is acceptable as it contains the key concepts and tools mentioned, even though it is not perfectly worded."
             },
             "experience_1": {
               "score": "7/10",
               "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate mentioned relevant experience but lacked specific details and examples."
+              "reasoning": "The response mentions relevant experience but lacks specific examples."
             },
             "experience_2": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The response was vague and unclear, lacking specific timeframes and details."
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The response mentions relevant experience but lacks specific examples."
             },
             "experience_3": {
               "score": "7/10",
               "level": "\ud83d\udfe1 Acceptable",
-              "reasoning": "The candidate mentioned relevant duties but the response was somewhat vague and lacked specific examples."
+              "reasoning": "The response mentions relevant experience but lacks specific examples."
             },
-            "knowledge_pos": {
+            "knowledge_setup": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The response is detailed and relevant but lacks specific examples."
+            },
+            "knowledge_wine": {
               "score": "3/10",
               "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate indicated they have used a reservation system but not the specific ones mentioned, and did not provide details on how they use it."
+              "reasoning": "The response is vague and unclear."
             },
-            "knowledge_seating": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate's response indicated a lack of understanding of proper seating procedures."
+            "knowledge_clearing": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The response is correct and detailed."
             },
-            "knowledge_walkin": {
-              "score": "3/10",
-              "level": "\ud83d\udd34 Red Flag",
-              "reasoning": "The candidate's response did not demonstrate an understanding of how to properly handle a large walk-in group."
+            "knowledge_scenario": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The response is relevant but lacks specific examples."
             }
           },
           "summary": {
             "strengths": [
-              "Some relevant experience and basic understanding of reservation information collection."
+              "Basic English customer service ability",
+              "Relevant experience in banquet service",
+              "Knowledge of clearing plates"
             ],
             "areas_for_improvement": [
-              "Professionalism in guest interactions, detailed experience, specific knowledge of host duties and systems."
+              "Needs to provide more specific examples in experience and knowledge responses",
+              "Improve clarity and detail in responses"
             ]
           }
         },
         "metrics": {
-          "llm_processing_time_seconds": 4.3714354038238525,
-          "llm_total_input_tokens": 2172,
-          "llm_total_output_tokens": 681,
-          "llm_total_tokens": 2853,
-          "llm_total_accuracy": 0.0,
-          "recommendation_accuracy": 0.0,
+          "llm_processing_time_seconds": 4.521647930145264,
+          "llm_total_input_tokens": 2339,
+          "llm_total_output_tokens": 656,
+          "llm_total_tokens": 2995,
+          "recommendation_accuracy": 1.0,
           "score_correlation": 0.0,
-          "category_accuracy": 0.0
+          "category_accuracy": 0.0,
+          "llm_total_accuracy": 0.9031746031746032
         }
       }
     },
-    "timestamp": 1758751409.8841567
+    "timestamp": 1758821647.7991636
+  },
+  "bartender": {
+    "success": true,
+    "assessment_id": "bartender_20250924_164503_0112",
+    "skill_type": "bartender",
+    "results": {
+      "claude-sonnet-4": {
+        "analysis": {
+          "overall_assessment": {
+            "recommendation": "REVIEW",
+            "reasoning": "The candidate scored above 70% in two out of three categories (Baseline and Knowledge), but fell short in the Experience category. This suggests some relevant experience and strong technical knowledge, but a lack of clearly demonstrated bartending responsibilities.",
+            "categories_above_70_percent": 2
+          },
+          "category_breakdown": {},
+          "question_details": {
+            "knowledge_service": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The response demonstrates responsible alcohol service judgment by stating they would cut off an intoxicated guest."
+            },
+            "experience_1": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentions some relevant bartending experience at a bar/grill, hotel, and weddings, but lacks specific details."
+            },
+            "experience_2": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The response provides some timeframes for previous bartending roles, but remains vague on specific responsibilities."
+            },
+            "experience_3": {
+              "score": "0/10",
+              "level": "\ud83d\udd34 No Response",
+              "reasoning": "No meaningful response was provided for this question."
+            },
+            "knowledge_glassware_1": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate correctly identified that a Cosmopolitan is served in a martini or cocktail glass."
+            },
+            "knowledge_glassware_2": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate correctly identified that an Old Fashioned is served in a lowball or rocks glass."
+            },
+            "knowledge_margarita": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "While the response missed the salt rim, it included the key ingredients of tequila, triple sec, and lime juice."
+            },
+            "knowledge_old_fashioned": {
+              "score": "3/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The response misses critical ingredients like bitters and an orange garnish for an Old Fashioned."
+            },
+            "knowledge_tools": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate demonstrated knowledge of the essential tools for shaking and straining cocktails."
+            }
+          },
+          "summary": {
+            "strengths": [
+              "Demonstrated responsible alcohol service judgment",
+              "Strong knowledge of glassware, cocktail recipes, and tools"
+            ],
+            "areas_for_improvement": [
+              "Provide more specific details on previous bartending roles and core responsibilities"
+            ]
+          }
+        },
+        "metrics": {
+          "llm_processing_time_seconds": 13.935877799987793,
+          "llm_total_input_tokens": 2512,
+          "llm_total_output_tokens": 834,
+          "llm_total_tokens": 3346,
+          "llm_total_accuracy": 1.0,
+          "score_correlation": 1.0,
+          "recommendation_accuracy": 1.0
+        }
+      },
+      "nova-micro": {
+        "analysis": {
+          "overall_assessment": {
+            "recommendation": "REVIEW",
+            "reasoning": "The candidate has an average score of 50% across all categories. They meet the criteria for a review as they have 50% or more in two categories but not all three.",
+            "categories_above_70_percent": 0
+          },
+          "category_breakdown": {},
+          "question_details": {
+            "knowledge_service": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate provided a vague and unclear response to the responsible alcohol service question. The response 'I would politely cut him off' lacks detail and specific examples."
+            },
+            "experience_1": {
+              "score": "6/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentioned working at Jim's Bar and Grill, two weddings, and the Radisson Hotel. However, the response is vague and lacks specific details about the responsibilities and timeframes."
+            },
+            "experience_2": {
+              "score": "5/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The candidate's response is unclear and repetitive. While some relevant experience is mentioned, it lacks specific details and is difficult to verify."
+            },
+            "experience_3": {
+              "score": "0/10",
+              "level": "\ud83d\udd34 No Response",
+              "reasoning": "The response is transcription-failed, providing no meaningful answer."
+            },
+            "knowledge_glassware_1": {
+              "score": "3/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The candidate incorrectly stated 'A martini' as the glass for a Cosmopolitan. The ideal glass would be a cocktail glass or martini glass."
+            },
+            "knowledge_glassware_2": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate correctly identified 'A low ball glass' for an Old Fashioned, which is acceptable as it aligns with the short glass or rocks glass."
+            },
+            "knowledge_margarita": {
+              "score": "5/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The candidate's response 'Lime triple sec tequila. orange garnish' is vague and misses key ingredients. The ideal response would include tequila, triple sec/orange liqueur, lime juice, and salt rim."
+            },
+            "knowledge_old_fashioned": {
+              "score": "3/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The candidate's response 'Bourbon 666. And sugar.' is incorrect and vague. The ideal response would include whiskey/bourbon, bitters, sugar, and orange garnish."
+            },
+            "knowledge_tools": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate correctly identified 'a shaker, a jigger, uh, a mesh strainer' for shaking and straining a cocktail, which is acceptable."
+            }
+          },
+          "summary": {
+            "strengths": [
+              "Some relevant experience and knowledge of bar tools and glassware"
+            ],
+            "areas_for_improvement": [
+              "More detailed and specific responses needed for experience and knowledge questions"
+            ]
+          }
+        },
+        "metrics": {
+          "llm_processing_time_seconds": 2.8646020889282227,
+          "llm_total_input_tokens": 2201,
+          "llm_total_output_tokens": 851,
+          "llm_total_tokens": 3052,
+          "recommendation_accuracy": 1.0,
+          "score_correlation": 0.0,
+          "category_accuracy": 0.0,
+          "llm_total_accuracy": 0.7428571428571429
+        }
+      },
+      "nova-pro": {
+        "analysis": {
+          "overall_assessment": {
+            "recommendation": "REVIEW",
+            "reasoning": "The candidate scored above 70% in two out of three categories (baseline and knowledge), but fell below in the experience category.",
+            "categories_above_70_percent": 2
+          },
+          "category_breakdown": {},
+          "question_details": {
+            "knowledge_service": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate provided a relevant response but lacked specific examples or detailed experience."
+            },
+            "experience_1": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentioned relevant experience but it was not detailed enough to be considered ideal."
+            },
+            "experience_2": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate provided some relevant experience but it lacked specific examples and detailed timeframes."
+            },
+            "experience_3": {
+              "score": "0/10",
+              "level": "\ud83d\udd34 No Response",
+              "reasoning": "The transcription failed, so no meaningful response was provided."
+            },
+            "knowledge_glassware_1": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate correctly identified a martini glass as the appropriate glass for a Cosmopolitan."
+            },
+            "knowledge_glassware_2": {
+              "score": "10/10",
+              "level": "\ud83d\udfe2 Ideal",
+              "reasoning": "The candidate correctly identified a lowball glass as the appropriate glass for an Old Fashioned."
+            },
+            "knowledge_margarita": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentioned key ingredients but missed the salt rim and used 'orange garnish' instead of 'lime juice'."
+            },
+            "knowledge_old_fashioned": {
+              "score": "3/10",
+              "level": "\ud83d\udd34 Red Flag",
+              "reasoning": "The candidate's response was vague and incorrect, missing key ingredients like bitters and an orange garnish."
+            },
+            "knowledge_tools": {
+              "score": "7/10",
+              "level": "\ud83d\udfe1 Acceptable",
+              "reasoning": "The candidate mentioned key tools but the response was somewhat vague."
+            }
+          },
+          "summary": {
+            "strengths": [
+              "Good knowledge of glassware and some tools",
+              "Acceptable responsible alcohol service judgment"
+            ],
+            "areas_for_improvement": [
+              "Needs to provide more detailed and specific experience",
+              "Improve knowledge of cocktail ingredients and recipes"
+            ]
+          }
+        },
+        "metrics": {
+          "llm_processing_time_seconds": 4.915100574493408,
+          "llm_total_input_tokens": 2201,
+          "llm_total_output_tokens": 716,
+          "llm_total_tokens": 2917,
+          "recommendation_accuracy": 1.0,
+          "score_correlation": 0.0,
+          "category_accuracy": 0.0,
+          "llm_total_accuracy": 0.9333333333333332
+        }
+      }
+    },
+    "timestamp": 1758821669.7974904
   }
 }

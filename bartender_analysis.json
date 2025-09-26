@@ -1,0 +1,120 @@
+{
+  "success": true,
+  "assessment_id": "bartender_20250924_164503_0112",
+  "skill_type": "bartender",
+  "analyzed_at": "2025-09-24T16:50:00.201972",
+  "transcripts": {
+    "experience_1": "I worked at Jim's Bar and Grill, um, and I've worked two weddings. And I also worked at the Radisson Hotel.",
+    "experience_2": "Uh, I worked, um, at Jim's Grill, um. The last 8 months prior to that, I worked at the Radisson as a bartender for 3 months, and then I've spent time, like I said, on the side doing bartender work for weddings, and that was over the last 2 years.",
+    "experience_3": "[TRANSCRIPTION_FAILED]",
+    "knowledge_glassware_1": "A martini.",
+    "knowledge_glassware_2": "A low ball glass",
+    "knowledge_margarita": "Lime triple sec tequila. orange garnish",
+    "knowledge_old_fashioned": "Bourbon 666. And sugar.",
+    "knowledge_tools": "Uh, a shaker, a jigger, uh, a mesh strainer.",
+    "knowledge_service": "I would politely cut him off."
+  },
+  "llm_analysis": {
+    "overall_assessment": {
+      "recommendation": "REVIEW",
+      "reasoning": "The candidate scored above 70% in two out of the three categories (Baseline and Knowledge), meeting the criteria for further review. However, their Experience score was below 70%.",
+      "categories_above_70_percent": 2
+    },
+    "category_breakdown": {
+      "Baseline Criteria": {
+        "average_score": "10.0/10",
+        "percentage": "100%",
+        "status": "\u2705 PASS",
+        "questions_included": [
+          "knowledge_service"
+        ]
+      },
+      "Experience & Responsibilities": {
+        "average_score": "4.7/10",
+        "percentage": "47%",
+        "status": "\u274c BELOW 70%",
+        "questions_included": [
+          "experience_1",
+          "experience_2",
+          "experience_3"
+        ]
+      },
+      "Knowledge Checks": {
+        "average_score": "8.0/10",
+        "percentage": "80%",
+        "status": "\u2705 PASS",
+        "questions_included": [
+          "knowledge_glassware_1",
+          "knowledge_glassware_2",
+          "knowledge_margarita",
+          "knowledge_old_fashioned",
+          "knowledge_tools"
+        ]
+      }
+    },
+    "question_details": {
+      "knowledge_service": {
+        "score": "10/10",
+        "level": "\ud83d\udfe2 Ideal",
+        "reasoning": "The response demonstrates responsible alcohol service judgment by stating they would cut off an intoxicated guest."
+      },
+      "experience_1": {
+        "score": "7/10",
+        "level": "\ud83d\udfe1 Acceptable",
+        "reasoning": "The candidate mentions some relevant bartending experience at a bar/grill, hotel, and weddings, but lacks specific details."
+      },
+      "experience_2": {
+        "score": "7/10",
+        "level": "\ud83d\udfe1 Acceptable",
+        "reasoning": "Some work experience is provided with timeframes, but still lacks depth on specific responsibilities."
+      },
+      "experience_3": {
+        "score": "0/10",
+        "level": "\ud83d\udd34 No Response",
+        "reasoning": "No meaningful response was provided for this question."
+      },
+      "knowledge_glassware_1": {
+        "score": "10/10",
+        "level": "\ud83d\udfe2 Ideal",
+        "reasoning": "The candidate correctly identified a martini glass as the appropriate glassware for a Cosmopolitan cocktail."
+      },
+      "knowledge_glassware_2": {
+        "score": "10/10",
+        "level": "\ud83d\udfe2 Ideal",
+        "reasoning": "The candidate correctly identified a lowball or rocks glass as the appropriate glassware for an Old Fashioned cocktail."
+      },
+      "knowledge_margarita": {
+        "score": "7/10",
+        "level": "\ud83d\udfe1 Acceptable",
+        "reasoning": "While the basic ingredients were listed, the response missed the salt rim which is a key component of a margarita."
+      },
+      "knowledge_old_fashioned": {
+        "score": "3/10",
+        "level": "\ud83d\udd34 Red Flag",
+        "reasoning": "The response misses multiple key ingredients like bitters and an orange garnish for an Old Fashioned cocktail."
+      },
+      "knowledge_tools": {
+        "score": "10/10",
+        "level": "\ud83d\udfe2 Ideal",
+        "reasoning": "The candidate demonstrated knowledge of the proper tools (shaker, strainer, jigger) for shaking and straining cocktails."
+      }
+    },
+    "summary": {
+      "strengths": [
+        "Demonstrated responsible alcohol service judgment",
+        "Strong knowledge of glassware and bartending tools",
+        "Acceptable understanding of basic cocktail recipes like the Margarita"
+      ],
+      "areas_for_improvement": [
+        "Provide more specific details on past bartending experience and responsibilities",
+        "Improve knowledge of classic cocktail recipes like the Old Fashioned"
+      ]
+    }
+  },
+  "recommendation": "REVIEW",
+  "metadata": {
+    "total_questions": 9,
+    "transcription_service": "AWS Transcribe",
+    "llm_service": "Amazon Bedrock Claude"
+  }
+}
